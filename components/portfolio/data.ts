@@ -1,0 +1,317 @@
+import {
+  BookOpen,
+  Code2,
+  Users,
+  DatabaseZap,
+  GitBranch,
+  Network,
+  Orbit,
+  Server,
+  ShieldCheck,
+  Sparkles,
+  TerminalSquare,
+  Workflow,
+  Zap,
+} from "lucide-react";
+
+export const profile = {
+  name: "Piyush Kumar Rai",
+  headline: "AI/ML Engineer • Generative AI Engineer • Full-Stack Software Engineer",
+  location: "Noida, Uttar Pradesh, India",
+  email: "piyushrai961@yahoo.com",
+  phone: "+91 8081507912",
+  github: "https://github.com/PiyushRai98",
+  linkedin: "https://www.linkedin.com/in/piyushrai100/",
+};
+
+export const stats = [
+  { value: 5, suffix: "+", label: "merged open-source PRs", href: "#signal" },
+  { value: 3, suffix: "+", label: "AI workflow systems", href: "#projects" },
+  { value: 104, suffix: "", label: "ranking features engineered", href: "#projects" },
+  { value: 40, suffix: "%", label: "CI/CD overhead reduced", href: "#experience" },
+];
+
+export const projects = [
+  {
+    name: "AI Research Assistant",
+    full: "IBM Granite RAG Research Platform",
+    status: "Citation-grounded AI assistant",
+    icon: BookOpen,
+    accent: "violet",
+    summary:
+      "RAG platform that transforms research PDFs into an interactive AI assistant with citation-grounded Q&A, summaries, flashcards, quizzes, and document comparison using IBM Granite LLM and BGE-small embeddings.",
+    capabilities: [
+      "Retrieval-Augmented Generation",
+      "IBM Granite LLM",
+      "BGE-small Embeddings",
+      "Vector Indexing",
+      "Semantic Search",
+      "Document Chunking",
+      "Citation-backed Responses",
+      "Markdown/PDF Export",
+    ],
+    nodes: ["PDF Ingestion", "Chunker", "BGE Embedder", "FAISS Index", "Granite LLM", "Response API"],
+    github: "https://github.com/PiyushRai98/ai-research-assistant",
+    stack: ["Python", "IBM Granite", "RAG", "BGE-small-en-v1.5", "FAISS", "Streamlit"],
+    bullets: [
+      "Built a RAG platform that transforms research PDFs into an interactive AI assistant with citation-grounded question answering using IBM Granite LLM and BGE-small embeddings.",
+      "Implemented semantic retrieval, document chunking, vector indexing, and citation-backed responses with summaries, flashcards, quizzes, and document comparison.",
+      "Developed a Streamlit app with Markdown/PDF export for fast semantic search and lightweight deployment.",
+    ],
+  },
+  {
+    name: "Redrob AI Recruiter",
+    full: "AI-Powered Candidate Ranking Platform",
+    status: "100K+ profile intelligence engine",
+    icon: Users,
+    accent: "sapphire",
+    summary:
+      "AI-powered candidate ranking platform shortlisting top 100 from 100K+ profiles using Hybrid Retrieval (BM25 + Dense + RRF) and LightGBM LambdaMART with 104 engineered ranking features.",
+    capabilities: [
+      "Hybrid Retrieval (BM25 + Dense)",
+      "LightGBM LambdaMART",
+      "104 Ranking Features",
+      "Sentence Transformers",
+      "RRF Re-ranking",
+      "Explainable AI",
+      "Career Evidence Extraction",
+      "Behavioral Intelligence",
+    ],
+    nodes: ["Query Parser", "BM25 Retriever", "Dense Retriever", "RRF Ranker", "LightGBM", "Dashboard"],
+    github: "https://github.com/PiyushRai98/Ultimate-AI-Recruiter",
+    stack: ["Python", "LightGBM", "FAISS", "BM25", "Sentence Transformers", "Streamlit", "Plotly"],
+    bullets: [
+      "Built an AI-powered candidate ranking platform that shortlisted top 100 candidates from 100K+ profiles using Hybrid Retrieval (BM25 + Dense + RRF) and LightGBM LambdaMART.",
+      "Engineered 104 ranking features with multi-query semantic retrieval, career evidence extraction, behavioral intelligence, and explainable AI.",
+      "Developed a Streamlit + Plotly dashboard for candidate intelligence, ranking insights, and pipeline monitoring — ~38s end-to-end inference.",
+    ],
+  },
+  {
+    name: "CollabCode",
+    full: "Real-Time Collaborative Coding Platform",
+    status: "Distributed developer workspace",
+    icon: Code2,
+    accent: "sapphire",
+    summary:
+      "A MERN collaborative coding platform with Socket.IO, Monaco Editor, Yjs CRDTs, real-time sync, live cursors, JWT auth, Docker sandboxing, and distributed session architecture.",
+    capabilities: [
+      "MERN Stack",
+      "Socket.IO",
+      "Monaco Editor",
+      "Yjs CRDTs",
+      "Redis Pub/Sub",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions",
+    ],
+    nodes: ["React Client", "Socket Hub", "CRDT Sync", "Monaco", "Redis Pub/Sub", "Session Store"],
+    github: "https://github.com/PiyushRai98/CollabCode",
+    stack: ["React", "TypeScript", "Node.js", "Socket.IO", "MongoDB", "Redis", "Docker"],
+    bullets: [
+      "Built a production-ready real-time collaborative code editor with Monaco Editor and Yjs CRDTs, enabling conflict-free multi-user editing, live cursor presence, and room-based collaboration.",
+      "Engineered a scalable backend using Node.js, Express, Socket.io, Redis Pub/Sub, and MongoDB, supporting distributed synchronization, version history, JWT authentication, and auto-save functionality.",
+      "Integrated sandboxed code execution using Docker containers, CI/CD with GitHub Actions, Kubernetes deployment, and Prometheus monitoring.",
+    ],
+  },
+];
+
+export const experienceTimeline = [
+  {
+    date: "June 2026 - Present",
+    title: "IBM SkillsBuild Academic Internship",
+    titleHref: "https://drive.google.com/file/d/14DrbNf4zZ9Dw0tM09vTXDExDPMCNSiup/view?usp=sharing",
+    role: "AI Automation & Intelligent Solutions Intern",
+    org: "AICTE × IBM",
+    signal: "Agentic workflows, AI models, APIs, automation pipelines",
+    bullets: [
+      "Building AI-powered automation workflows and intelligent solutions using Agentic AI, workflow orchestration, and modern AI development practices.",
+      "Developing an end-to-end AI project integrating AI models, APIs, and automation pipelines under expert mentorship.",
+    ],
+  },
+  {
+    date: "May 2026 - Present",
+    title: "GirlScript Summer of Code 2026",
+    titleHref: "https://gssoc.girlscript.org/profile/90ff1fb9-446d-4334-a112-a0536dbd61e4",
+    role: "Open Source Contributor — AI & Agents Track",
+    org: "GSSoC",
+    signal: "AI features, REST APIs, MERN systems, GitHub Actions, LangChain, merged PRs",
+    bullets: [
+      "Delivered 5+ merged pull requests shipping AI-powered features, agentic workflows, and RAG pipeline integrations across open-source repositories.",
+      "Automated CI/CD via GitHub Actions, reducing manual developer overhead by ~40%; applied prompt engineering and LLM orchestration across 3+ projects.",
+    ],
+  },
+  {
+    date: "Expected July 2027",
+    title: "JSS Academy of Technical Education, Noida",
+    titleHref: null,
+    role: "B.Tech - Electronics & Communication Engineering",
+    org: "JSSATEN",
+    signal: "Engineering foundations, systems thinking, signal processing mindset",
+    bullets: [],
+  },
+];
+
+export const skillGroups = [
+  {
+    title: "AI / Machine Learning",
+    icon: Sparkles,
+    items: [
+      "Machine Learning",
+      "Deep Learning",
+      "NLP",
+      "Generative AI",
+      "Agentic AI",
+      "RAG",
+      "LangChain",
+      "LLM Orchestration",
+      "Prompt Engineering",
+      "TensorFlow",
+      "PyTorch",
+      "OpenAI API",
+      "Hugging Face",
+      "FAISS",
+      "BGE Embeddings",
+      "IBM Granite",
+    ],
+  },
+  {
+    title: "Frontend",
+    icon: Workflow,
+    items: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
+      "TypeScript",
+      "Socket.IO (client)",
+      "Monaco Editor",
+    ],
+  },
+  {
+    title: "Backend & Databases",
+    icon: DatabaseZap,
+    items: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "WebSockets",
+      "Socket.IO",
+      "Microservices",
+      "MongoDB",
+      "PostgreSQL",
+      "Redis",
+      "Pinecone",
+      "Vector Databases",
+    ],
+  },
+  {
+    title: "MLOps & Cloud",
+    icon: Server,
+    items: [
+      "Docker",
+      "Kubernetes",
+      "CI/CD",
+      "GitHub Actions",
+      "Linux",
+      "Agile",
+      "Scrum",
+      "Prometheus",
+      "Streamlit",
+    ],
+  },
+  {
+    title: "Languages & Tools",
+    icon: TerminalSquare,
+    items: [
+      "Python",
+      "JavaScript (ES6+)",
+      "C++",
+      "SQL",
+      "Git",
+      "Postman",
+      "VS Code",
+    ],
+  },
+];
+
+export const orbitSkills = [
+  "Python",
+  "LangChain",
+  "RAG",
+  "OpenAI",
+  "React",
+  "Next.js",
+  "Node",
+  "MongoDB",
+  "Socket.IO",
+  "Docker",
+  "PyTorch",
+  "Kubernetes",
+];
+
+export const certifications = [
+  {
+    name: "Machine Learning Specialization",
+    issuer: "DeepLearning.AI / Stanford Online",
+    note: "Andrew Ng",
+    href: "https://learn.deeplearning.ai/certificates/ee7ecc20-9d37-4647-b6cd-63e78d8a3974",
+  },
+  {
+    name: "Deep Learning Specialization",
+    issuer: "DeepLearning.AI",
+    note: null,
+    href: "https://learn.deeplearning.ai/certificates/9cdfd386-07a5-496c-bf80-9ab98af42280",
+  },
+  {
+    name: "Natural Language Processing Specialization",
+    issuer: "DeepLearning.AI",
+    note: null,
+    href: "https://learn.deeplearning.ai/certificates/071fea47-5a37-4790-afa1-8601b2bf4c48",
+  },
+  {
+    name: "TensorFlow Developer Professional Certificate",
+    issuer: "DeepLearning.AI",
+    note: null,
+    href: "https://learn.deeplearning.ai/certificates/47a7695c-4abb-4636-8372-4b615d56fe0b",
+  },
+  {
+    name: "Generative AI for Software Development",
+    issuer: "DeepLearning.AI",
+    note: null,
+    href: "https://learn.deeplearning.ai/certificates/43ae3d56-5392-49ae-9e7e-5c63e6f20b12",
+  },
+  {
+    name: "Mathematics for Machine Learning and Data Science",
+    issuer: "DeepLearning.AI",
+    note: null,
+    href: "https://learn.deeplearning.ai/certificates/bd197422-9ce2-45ed-b960-7fbac233b1ae",
+  },
+  {
+    name: "Data Analytics",
+    issuer: "DeepLearning.AI",
+    note: null,
+    href: "https://learn.deeplearning.ai/certificates/cf30b686-75f5-457c-8196-250682fca26b",
+  },
+  {
+    name: "PyTorch for Deep Learning",
+    issuer: "DeepLearning.AI",
+    note: null,
+    href: "https://learn.deeplearning.ai/certificates/1b3a4805-8589-4725-8b77-e91ef490f753",
+  },
+  {
+    name: "freeCodeCamp Certifications",
+    issuer: "freeCodeCamp",
+    note: null,
+    href: "https://www.freecodecamp.org/piyushrai98",
+  },
+];
+
+export const commandLinks = [
+  { label: "View Projects", target: "#projects", icon: Orbit },
+  { label: "Inspect Skills", target: "#skills", icon: Network },
+  { label: "Run Terminal", target: "#terminal", icon: TerminalSquare },
+  { label: "View Open Source", target: "#signal", icon: GitBranch },
+  { label: "Contact Piyush", target: "#contact", icon: Zap },
+  { label: "Trust Credentials", target: "#certifications", icon: ShieldCheck },
+];

@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Piyush Kumar Rai — AI OS Portfolio
+
+> An interactive, cinematic portfolio built as an **AI operating system** — live GitHub contribution graph, real repo data, animated skills constellation, and a terminal interface, all on a dark cyberpunk aesthetic.
+
+**Live:** [portfolio2-nu-ecru.vercel.app](https://portfolio2-nu-ecru.vercel.app) &nbsp;·&nbsp; **Resume:** [View PDF](https://drive.google.com/file/d/14DrbNf4zZ9Dw0tM09vTXDExDPMCNSiup/view?usp=sharing)
+
+---
+
+## Features
+
+| Section | What it does |
+|---|---|
+| **Hero** | Animated name in Autumn Flowers script font, AI role status panel, scramble-text badge |
+| **Marquee** | Infinite scrolling tech stack strip |
+| **Stats Strip** | Live-counting numbers — PRs, systems, features, CI/CD savings |
+| **Project Architecture** | Interactive node-diagram cards for each project with GitHub links and stack tags |
+| **Experience Timeline** | Resume-accurate entries with certificate links and bullet points |
+| **Skills Constellation** | Orbiting skill nodes around an "AI Core" centre + grouped skill panels |
+| **AI Assistant** | In-page chat panel |
+| **Terminal** | Interactive command-line interface |
+| **Contribution Graph** | **Real GitHub data** via GraphQL API — cyan/violet heat map, 6h cache |
+| **Recent Repos** | Auto-pulled from GitHub REST API — language dots, stars, time-ago |
+| **Certifications** | Clickable cards linking directly to DeepLearning.AI certificates |
+| **Contact Dock** | Email, GitHub, LinkedIn |
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router, Turbopack)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v3 + CSS custom properties (design token system)
+- **Animation:** Framer Motion, GSAP
+- **3D:** React Three Fiber + Three.js
+- **UI primitives:** Radix UI, `cmdk`, Lucide React
+- **Fonts:** Geist (body), Space Grotesk (display), JetBrains Mono (mono), Autumn Flowers (script)
+- **Data:** GitHub GraphQL API (contributions) + GitHub REST API (repos)
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone
+
+```bash
+git clone https://github.com/PiyushRai98/portfolio.git
+cd portfolio
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Set up environment variables
+
+Create `.env.local` in the project root:
+
+```env
+# GitHub Personal Access Token
+# Generate at: https://github.com/settings/tokens
+# Required scope: read:user  (no repo access needed)
+GITHUB_TOKEN=ghp_your_token_here
+```
+
+> The contribution graph and repo strip work without a token (GitHub allows unauthenticated requests at 60/hr), but adding a token raises the limit to 5000/hr and is required for private contribution counts.
+
+### 4. Run dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+├── app/
+│   ├── api/
+│   │   ├── github-contributions/route.ts   # GraphQL → contribution calendar (6h cache)
+│   │   └── github-repos/route.ts           # REST → repo list (1h cache)
+│   ├── globals.css                         # Design tokens + global styles
+│   ├── layout.tsx                          # Root layout, font variables
+│   └── page.tsx                            # Page composition
+│
+├── components/portfolio/
+│   ├── data.ts                             # All content — projects, skills, experience, certs
+│   ├── Hero.tsx
+│   ├── ProjectArchitecture.tsx             # Interactive node-diagram project cards
+│   ├── ExperienceTimeline.tsx
+│   ├── SkillsConstellation.tsx             # Orbiting skill nodes
+│   ├── ContributionSignal.tsx              # Wrapper section
+│   ├── ContributionGrid.tsx                # Real GitHub contribution heatmap
+│   ├── RecentRepos.tsx                     # Auto-pulled repo cards
+│   ├── Certifications.tsx                  # Clickable cert cards
+│   ├── AssistantPanel.tsx
+│   ├── TerminalPanel.tsx
+│   └── ...
+│
+├── public/
+│   └── fonts/
+│       └── AutumnFlowers.otf
+│
+├── lib/
+│   ├── theme.ts
+│   └── utils.ts
+│
+├── tailwind.config.ts                      # Design tokens → Tailwind classes
+└── .env.local.example                      # Token setup reference
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customisation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All content lives in **`components/portfolio/data.ts`** — edit that single file to update:
+- Profile info (name, links, location)
+- Stats strip numbers
+- Projects (name, stack, nodes, GitHub URL, bullets)
+- Experience timeline entries
+- Skill groups and orbit skills
+- Certifications
 
-## Deploy on Vercel
+No other files need touching for content changes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment (Vercel)
+
+1. Push to GitHub
+2. Import repo in [vercel.com/new](https://vercel.com/new)
+3. Add `GITHUB_TOKEN` in **Project Settings → Environment Variables**
+4. Deploy — Vercel auto-detects Next.js
+
+The API routes use `revalidate` so contribution data refreshes every 6 hours and repo data every hour without a full redeploy.
+
+---
+
+## Environment Variables Reference
+
+| Variable | Required | Description |
+|---|---|---|
+| `GITHUB_TOKEN` | Recommended | GitHub PAT with `read:user` scope. Without it, unauthenticated API calls are rate-limited to 60/hr. |
+
+---
+
+## License
+
+MIT — use freely, attribution appreciated.
+
+---
+
+*Built by [Piyush Kumar Rai](https://github.com/PiyushRai98) · AI/ML Engineer · Generative AI Engineer · Full-Stack Software Engineer*

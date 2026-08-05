@@ -1,49 +1,47 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import { Orbitron } from "next/font/google";
+import { Geist, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
+const space = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
+const mono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Piyush Kumar Rai — AI/ML Engineer & Full-Stack Developer",
+  title: "Piyush Kumar Rai | AI Engineer & Full-Stack Software Engineer",
   description:
-    "Portfolio of Piyush Kumar Rai — AI/ML Engineer, Generative AI Developer, Open Source Contributor, and Full-Stack Engineer. Building intelligent systems, autonomous agents, and immersive digital experiences.",
+    "Interactive AI operating-system portfolio for Piyush Kumar Rai, showcasing generative AI, agentic systems, RAG, MERN, microservices, and production-grade engineering.",
   keywords: [
+    "Piyush Kumar Rai",
     "AI Engineer",
-    "ML Engineer",
-    "Generative AI",
-    "Full Stack Developer",
+    "Generative AI Engineer",
+    "Full-Stack Software Engineer",
+    "RAG",
     "LangChain",
-    "OpenAI",
-    "React",
-    "Next.js",
-    "Python",
-    "Portfolio",
+    "MERN Stack",
+    "Agentic AI",
   ],
   authors: [{ name: "Piyush Kumar Rai" }],
+  creator: "Piyush Kumar Rai",
   openGraph: {
-    title: "Piyush Kumar Rai — AI/ML Engineer",
+    title: "Piyush Kumar Rai | AI Engineer & Full-Stack Software Engineer",
     description:
-      "Building intelligent systems, autonomous agents, and immersive digital experiences.",
+      "A cinematic AI operating-system portfolio for production-grade AI systems, agentic workflows, and full-stack engineering.",
     type: "website",
+    locale: "en_IN",
   },
 };
 
@@ -53,20 +51,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased`}
-    >
-      <head>
-        <meta name="theme-color" content="#000000" />
-      </head>
-      <body className="min-h-screen bg-void text-silver-light selection:bg-violet/40">
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${geist.variable} ${space.variable} ${mono.variable}`} suppressHydrationWarning>
         {children}
-
-        {/* Noise Overlay */}
-        <div className="noise-overlay" aria-hidden="true" />
-        {/* Scanlines */}
-        <div className="scanlines" aria-hidden="true" />
       </body>
     </html>
   );

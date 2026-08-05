@@ -1,91 +1,58 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import HeroSection from "@/components/hero/hero-section";
-import AboutSection from "@/components/about/about-section";
-import TechSection from "@/components/tech/tech-section";
-import ProjectsSection from "@/components/projects/projects-section";
-import OpenSourceSection from "@/components/opensource/opensource-section";
-import ExperienceSection from "@/components/experience/experience-section";
-import CertificationsSection from "@/components/certifications/certifications-section";
-import Footer from "@/components/contact/footer";
-import Navbar from "@/components/navigation/navbar";
-
-const SmoothScrollProvider = dynamic(
-  () => import("@/components/providers/smooth-scroll"),
-  { ssr: false }
-);
-
-const CustomCursor = dynamic(
-  () => import("@/components/cursor/custom-cursor"),
-  { ssr: false }
-);
-
-const ParticleField = dynamic(
-  () => import("@/components/effects/particles"),
-  { ssr: false }
-);
-
-const AIChat = dynamic(
-  () => import("@/components/ai-assistant/ai-chat"),
-  { ssr: false }
-);
+import { useEffect } from "react";
+import gsap from "gsap";
+import { AssistantPanel } from "@/components/portfolio/AssistantPanel";
+import { Certifications } from "@/components/portfolio/Certifications";
+import { CommandPalette } from "@/components/portfolio/CommandPalette";
+import { ContactDock } from "@/components/portfolio/ContactDock";
+import { ContributionSignal } from "@/components/portfolio/ContributionSignal";
+import { CustomCursor } from "@/components/portfolio/CustomCursor";
+import { ExperienceTimeline } from "@/components/portfolio/ExperienceTimeline";
+import { Hero } from "@/components/portfolio/Hero";
+import { MagneticNav } from "@/components/portfolio/MagneticNav";
+import { Marquee } from "@/components/portfolio/Marquee";
+import { ProjectArchitecture } from "@/components/portfolio/ProjectArchitecture";
+import { SkillsConstellation } from "@/components/portfolio/SkillsConstellation";
+import { SmoothScroll } from "@/components/portfolio/SmoothScroll";
+import { StatsStrip } from "@/components/portfolio/StatsStrip";
+import { TerminalPanel } from "@/components/portfolio/TerminalPanel";
+import { SectionNavigator } from "@/components/portfolio/SectionNavigator";
 
 export default function Home() {
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+    gsap.fromTo(
+      ".boot-line",
+      { scaleX: 0 },
+      { scaleX: 1, duration: 1.15, ease: "power3.out", transformOrigin: "left center" },
+    );
+  }, []);
+
   return (
-    <SmoothScrollProvider>
+    <main className="relative min-h-screen overflow-hidden bg-base">
+      <SmoothScroll />
       <CustomCursor />
-      <ParticleField />
-      <Navbar />
-
-      <main className="relative z-10">
-        <HeroSection />
-
-        {/* Section divider */}
-        <div className="relative h-px">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet/20 to-transparent" />
-        </div>
-
-        <AboutSection />
-
-        <div className="relative h-px">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan/20 to-transparent" />
-        </div>
-
-        <TechSection />
-
-        <div className="relative h-px">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet/20 to-transparent" />
-        </div>
-
-        <ProjectsSection />
-
-        <div className="relative h-px">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan/20 to-transparent" />
-        </div>
-
-        <OpenSourceSection />
-
-        <div className="relative h-px">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet/20 to-transparent" />
-        </div>
-
-        <ExperienceSection />
-
-        <div className="relative h-px">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan/20 to-transparent" />
-        </div>
-
-        <CertificationsSection />
-
-        <div className="relative h-px">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet/20 to-transparent" />
-        </div>
-
-        <Footer />
-      </main>
-
-      <AIChat />
-    </SmoothScrollProvider>
+      <CommandPalette />
+      <MagneticNav />
+      <SectionNavigator />
+      <div className="noise" />
+      <div className="boot-line fixed left-0 top-0 z-[90] h-px w-full origin-left bg-gradient-to-r from-cyan via-sapphire to-transparent" />
+      <Hero />
+      <Marquee />
+      <StatsStrip />
+      <ProjectArchitecture />
+      <ExperienceTimeline />
+      <SkillsConstellation />
+      <AssistantPanel />
+      <TerminalPanel />
+      <ContributionSignal />
+      <Certifications />
+      <ContactDock />
+      <footer className="section-shell border-t border-white/10 py-8 text-center font-mono text-xs uppercase tracking-[0.18em] text-muted">
+        Piyush Kumar Rai · AI/ML Engineer · Generative AI Engineer · Full-Stack Software Engineer
+      </footer>
+    </main>
   );
 }
