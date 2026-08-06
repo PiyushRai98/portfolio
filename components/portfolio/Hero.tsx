@@ -83,13 +83,12 @@ export function Hero() {
               <span className="h-2.5 w-2.5 rounded-full bg-cyan shadow-glow" />
             </div>
             <div className="grid gap-3">
-              {roles.map((role, index) => (
+              {roles.map((role) => (
                 <div
                   key={role}
-                  className="flex items-center justify-between rounded-[8px] border border-white/10 bg-elevated px-3 py-3"
+                  className="flex items-center rounded-[8px] border border-white/10 bg-elevated px-3 py-3"
                 >
                   <span className="font-mono text-sm text-silver">{role}</span>
-                  <span className="text-xs text-cyan">{96 - index * 3}%</span>
                 </div>
               ))}
             </div>
