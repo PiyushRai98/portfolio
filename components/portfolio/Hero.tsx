@@ -76,15 +76,14 @@ export function Hero() {
               <p className="text-xs uppercase tracking-[0.16em] text-muted">Currently available for</p>
               <p className="mt-2 font-display text-2xl font-semibold text-silver">Full-time & contract roles</p>
             </div>
-            {/* Focus areas */}
-            <div className="grid gap-2">
-              {roles.map((role) => (
+            <div className="grid gap-3">
+              {roles.map((role, index) => (
                 <div
                   key={role}
-                  className="flex items-center gap-3 rounded-xl border border-white/8 bg-recessed/60 px-4 py-3"
+                  className="flex items-center justify-between rounded-[8px] border border-white/10 bg-elevated px-3 py-3"
                 >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan/70" />
-                  <span className="text-sm text-silver">{role}</span>
+                  <span className="font-mono text-sm text-silver">{role}</span>
+                  <span className="text-xs text-cyan">{96 - index * 3}%</span>
                 </div>
               ))}
             </div>
