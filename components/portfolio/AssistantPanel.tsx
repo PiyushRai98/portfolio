@@ -56,7 +56,6 @@ export function AssistantPanel() {
           <p className="mt-4 text-base leading-7 text-muted">
             A local assistant built on the portfolio knowledge base. Try a question about projects, skills, or availability.
           </p>
-          </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {suggestions.map((suggestion) => (
               <button
