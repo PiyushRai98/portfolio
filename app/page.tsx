@@ -38,7 +38,7 @@ export default function Home() {
       <MagneticNav />
       <SectionNavigator />
       <div className="noise" />
-      <div className="boot-line fixed left-0 top-0 z-[90] h-px w-full origin-left bg-gradient-to-r from-cyan/60 via-sapphire/40 to-transparent" />
+      <div className="boot-line fixed left-0 top-0 z-[90] h-px w-full origin-left bg-gradient-to-r from-cyan via-sapphire to-transparent" />
       <Hero />
       <Marquee />
       <StatsStrip />
@@ -50,8 +50,8 @@ export default function Home() {
       <ContributionSignal />
       <Certifications />
       <ContactDock />
-      <footer className="section-shell border-t border-white/8 py-8 text-center text-sm text-muted/60">
-        © 2026 Piyush Kumar Rai
+      <footer className="section-shell border-t border-white/10 py-8 text-center font-mono text-xs uppercase tracking-[0.18em] text-muted">
+        Piyush Kumar Rai · AI/ML Engineer · Generative AI Engineer · Full-Stack Software Engineer
       </footer>
     </main>
   );

@@ -50,11 +50,12 @@ export function AssistantPanel() {
     <section id="assistant" className="section-shell section-layer-recessed py-24">
       <div className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr] lg:items-start">
         <div>
-          <h2 className="font-display text-4xl font-semibold text-silver md:text-5xl">
-            Ask me anything
+          <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">portfolio assistant</p>
+          <h2 className="mt-3 font-display text-4xl font-semibold text-silver md:text-6xl">
+            Ask the interface. It answers like a system.
           </h2>
-          <p className="mt-4 text-base leading-7 text-muted">
-            A local assistant built on the portfolio knowledge base. Try a question about projects, skills, or availability.
+          <p className="mt-5 text-base leading-7 text-muted">
+            A lightweight local assistant uses the portfolio knowledge graph to answer recruiter-style questions instantly.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {suggestions.map((suggestion) => (
@@ -73,7 +74,7 @@ export function AssistantPanel() {
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <div className="flex items-center gap-2">
               <Bot className="h-5 w-5 text-cyan" />
-              <span className="text-sm text-silver">Portfolio assistant</span>
+              <span className="font-mono text-sm text-silver">pkr.assistant</span>
             </div>
             <span className="rounded-[8px] border border-cyan/20 bg-cyan/10 px-2 py-1 font-mono text-[11px] text-cyan">
               {status}

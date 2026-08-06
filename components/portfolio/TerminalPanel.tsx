@@ -51,11 +51,12 @@ export function TerminalPanel() {
         </div>
 
         <div>
-          <h2 className="font-display text-4xl font-semibold text-silver md:text-5xl">
-            Live system telemetry
+          <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">live terminal</p>
+          <h2 className="mt-3 font-display text-4xl font-semibold text-silver md:text-6xl">
+            The portfolio behaves like a developer cockpit.
           </h2>
-          <p className="mt-4 text-base leading-7 text-muted">
-            Terminal telemetry, contribution signals, and project diagrams — the portfolio behaves like an active workspace.
+          <p className="mt-5 text-base leading-7 text-muted">
+            Terminal telemetry, command routing, contribution signals, and project diagrams create the feeling of an AI OS rather than a static page.
           </p>
         </div>
       </div>

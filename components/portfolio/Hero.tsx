@@ -1,8 +1,9 @@
 "use client";
 
-import { ArrowDown, Brain, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { ArrowDown, Brain, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { NeuralScene } from "./NeuralScene";
+import { ScrambleText } from "./ScrambleText";
 import { Button } from "@/components/ui/button";
 import { profile } from "./data";
 
@@ -20,9 +21,9 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-4 py-1.5 text-sm text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
-            AI/ML Engineer · Full-Stack
+          <div className="mb-6 inline-flex items-center gap-2 rounded-[8px] border border-cyan/20 bg-cyan/8 px-3 py-2 font-mono text-xs uppercase tracking-[0.22em] text-cyan">
+            <Sparkles className="h-4 w-4" />
+            <ScrambleText text="Production AI Systems Engineer" />
           </div>
 
           <h1 className="font-script text-5xl leading-[1.05] tracking-normal text-silver sm:text-6xl md:text-7xl lg:text-8xl">
@@ -36,13 +37,16 @@ export function Hero() {
             retrieval systems, and scalable full-stack engineering into products that feel alive.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button asChild>
-              <a href="#projects">
-                <Brain className="h-4 w-4" />
-                View Projects
-              </a>
-            </Button>
+          <div className="mt-8 flex flex-wrap items-start gap-3">
+            <div className="flex flex-col gap-2">
+              <Button asChild>
+                <a href="#projects">
+                  <Brain className="h-4 w-4" />
+                  Enter AI OS
+                </a>
+              </Button>
+              <p className="font-mono text-xs text-muted">Switch to interactive system view</p>
+            </div>
             <Button variant="secondary" asChild>
               <a href={profile.github} target="_blank" rel="noreferrer">
                 <Github className="h-4 w-4" />
@@ -68,35 +72,37 @@ export function Hero() {
           initial={{ opacity: 0, x: 28 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="shell-border relative overflow-hidden rounded-2xl p-6"
+          className="shell-border holo-scan relative overflow-hidden rounded-[8px] p-4"
         >
-          <div className="relative z-10 flex flex-col gap-5">
-            {/* Name + role */}
-            <div className="border-b border-white/8 pb-5">
-              <p className="text-xs uppercase tracking-[0.16em] text-muted">Currently available for</p>
-              <p className="mt-2 font-display text-2xl font-semibold text-silver">Full-time & contract roles</p>
+          <div className="relative z-10">
+            <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.24em] text-muted">system.status</p>
+                <p className="mt-1 text-sm text-silver">AI control layer online</p>
+              </div>
+              <span className="h-2.5 w-2.5 rounded-full bg-cyan shadow-glow" />
             </div>
             <div className="grid gap-3">
-              {roles.map((role, index) => (
+              {roles.map((role) => (
                 <div
                   key={role}
-                  className="flex items-center justify-between rounded-[8px] border border-white/10 bg-elevated px-3 py-3"
+                  className="flex items-center rounded-[8px] border border-white/10 bg-elevated px-3 py-3"
                 >
                   <span className="font-mono text-sm text-silver">{role}</span>
-                  <span className="text-xs text-cyan">{96 - index * 3}%</span>
                 </div>
               ))}
             </div>
-            {/* Location */}
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <MapPin className="h-4 w-4 shrink-0 text-cyan/70" />
+            <div className="mt-4 flex items-center gap-2 rounded-[8px] border border-sapphire/25 bg-sapphire/10 px-3 py-3 text-sm text-silver">
+              <MapPin className="h-4 w-4 text-cyan" />
               {profile.location}
             </div>
           </div>
         </motion.aside>
       </div>
-      <div className="section-shell relative z-10 -mt-2 flex items-center justify-center border-t border-white/8 py-5">
-        <ArrowDown className="h-4 w-4 animate-bounce text-muted/60" />
+      <div className="section-shell relative z-10 -mt-2 flex items-center justify-between border-t border-white/10 py-4 font-mono text-xs uppercase tracking-[0.22em] text-muted">
+        <span>AI Systems</span>
+        <ArrowDown className="h-4 w-4 animate-bounce text-cyan" />
+        <span>Full-Stack Engineering</span>
       </div>
     </section>
   );

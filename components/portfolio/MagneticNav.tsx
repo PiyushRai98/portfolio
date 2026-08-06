@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail, Search } from "lucide-react";
+import { BrainCircuit, Github, Linkedin, Mail, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { profile } from "./data";
@@ -25,12 +25,12 @@ export function MagneticNav() {
       className="fixed left-0 right-0 top-4 z-50 px-4"
     >
       <nav className="section-shell shell-border flex h-14 items-center justify-between rounded-[8px] px-3">
-        <a href="#home" className="magnetic flex items-center gap-2.5 rounded-lg px-2 py-2">
-          <span className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.06] font-display text-sm font-semibold text-silver">
-            P
+        <a href="#home" className="magnetic flex items-center gap-2 rounded-[8px] px-2 py-2">
+          <span className="grid h-8 w-8 place-items-center rounded-[8px] border border-cyan/30 bg-cyan/10 text-cyan shadow-glow">
+            <BrainCircuit className="h-4 w-4" />
           </span>
-          <span className="hidden font-display text-sm font-semibold text-silver sm:inline">
-            Piyush Rai
+          <span className="hidden font-mono text-sm font-semibold tracking-[0.18em] text-silver sm:inline">
+            PIYUSH.DEV
           </span>
         </a>
 
