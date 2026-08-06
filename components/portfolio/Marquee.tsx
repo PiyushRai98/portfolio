@@ -13,14 +13,15 @@ const items = [
 
 export function Marquee() {
   return (
-    <div className="overflow-hidden border-y border-white/10 bg-white/[0.025] py-4">
-      <div className="flex w-max animate-marquee gap-8 whitespace-nowrap">
+    <div className="overflow-hidden border-y border-white/8 py-3.5">
+      <div className="flex w-max animate-marquee gap-0 whitespace-nowrap">
         {[...items, ...items].map((item, index) => (
           <span
             key={`${item}-${index}`}
-            className="font-mono text-xs uppercase tracking-[0.28em] text-muted"
+            className="flex items-center gap-0 text-sm text-muted/70"
           >
-            {item}
+            <span className="px-7">{item}</span>
+            <span className="text-white/15">·</span>
           </span>
         ))}
       </div>

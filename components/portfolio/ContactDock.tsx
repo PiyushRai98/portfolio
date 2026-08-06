@@ -11,9 +11,8 @@ export function ContactDock() {
         <div className="absolute inset-0 bg-grid-lines bg-[size:72px_72px] opacity-[0.09]" />
         <div className="relative z-10 grid gap-8 lg:grid-cols-[0.58fr_0.42fr] lg:items-end">
           <div>
-            <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">contact protocol</p>
-            <h2 className="mt-3 max-w-3xl font-display text-4xl font-semibold text-silver md:text-6xl">
-              Ready to build the next generation of AI products.
+            <h2 className="mt-0 max-w-3xl font-display text-4xl font-semibold text-silver md:text-5xl">
+              Let's build something together.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
               Available for AI engineering, full-stack software engineering, generative AI,

@@ -9,14 +9,13 @@ export function ExperienceTimeline() {
     <section id="experience" className="section-shell section-layer-recessed py-24">
       <div className="mb-12 grid gap-6 md:grid-cols-[0.7fr_0.3fr] md:items-end">
         <div>
-          <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">engineering timeline</p>
-          <h2 className="mt-3 font-display text-4xl font-semibold text-silver md:text-6xl">
-            Work mapped as a deployment stream.
+          <h2 className="font-display text-4xl font-semibold text-silver md:text-5xl">
+            Experience
           </h2>
+          <p className="mt-3 text-base text-muted">
+            Open-source contribution, AI automation internship, and engineering education.
+          </p>
         </div>
-        <p className="text-sm leading-6 text-muted">
-          Open-source contribution, AI automation, and engineering education are shown as active telemetry.
-        </p>
       </div>
 
       <div className="relative">
@@ -66,8 +65,8 @@ export function ExperienceTimeline() {
                 </div>
 
                 {/* Signal / tags */}
-                <div className="mt-4 rounded-[8px] border border-white/10 bg-recessed p-4">
-                  <p className="font-mono text-sm leading-6 text-muted">{item.signal}</p>
+                <div className="mt-4 rounded-xl border border-white/8 bg-recessed/50 px-4 py-3">
+                  <p className="text-sm leading-6 text-muted">{item.signal}</p>
                 </div>
 
                 {/* Bullet points from resume */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, ExternalLink, ShieldCheck } from "lucide-react";
+import { Award, ExternalLink } from "lucide-react";
 import { certifications } from "./data";
 
 export function Certifications() {
@@ -10,12 +10,13 @@ export function Certifications() {
       <div className="section-shell">
         <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <p className="font-mono text-sm uppercase tracking-[0.28em] text-amber">credential vault</p>
-            <h2 className="mt-3 font-display text-4xl font-semibold text-silver md:text-6xl">
-              Verified learning, displayed as achievement systems.
+            <h2 className="font-display text-4xl font-semibold text-silver md:text-5xl">
+              Certifications
             </h2>
+            <p className="mt-3 text-base text-muted">
+              Completed specializations from DeepLearning.AI, Stanford Online, and freeCodeCamp.
+            </p>
           </div>
-          <ShieldCheck className="hidden h-12 w-12 text-amber md:block" />
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -44,16 +45,8 @@ export function Certifications() {
                 {cert.name}
               </p>
 
-              {/* Issuer + optional note */}
-              <p className="mt-2 font-mono text-xs text-muted">
-                {cert.issuer}
-                {cert.note && (
-                  <span className="ml-1 text-amber/70">· {cert.note}</span>
-                )}
-              </p>
-
-              <p className="mt-3 font-mono text-xs uppercase tracking-[0.18em] text-muted/60">
-                achievement.unlocked
+              <p className="mt-3 font-mono text-xs text-muted/50">
+                {cert.issuer}{cert.note ? ` · ${cert.note}` : ""}
               </p>
             </motion.a>
           ))}

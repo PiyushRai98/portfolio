@@ -25,13 +25,15 @@ export function ProjectArchitecture() {
         {/* Header */}
         <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">featured systems</p>
-            <h2 className="mt-3 font-display text-4xl font-semibold text-silver md:text-6xl">
-              Project architecture, not project cards.
+            <h2 className="font-display text-4xl font-semibold text-silver md:text-5xl">
+              Selected projects
             </h2>
+            <p className="mt-3 text-base text-muted">
+              Built end-to-end — architecture, data pipelines, and deployment.
+            </p>
           </div>
-          <p className="max-w-md text-sm leading-6 text-muted">
-            Each build is presented as a live system surface: capabilities, nodes, and data flow.
+          <p className="max-w-sm text-sm leading-6 text-muted/70">
+            Each build is presented with capabilities, system nodes, and data flow.
           </p>
         </div>
 
@@ -165,20 +167,12 @@ export function ProjectArchitecture() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.07 }}
-                        className="magnetic rounded-[8px] border border-cyan/20 bg-recessed p-4 shadow-[0_0_28px_rgb(var(--accent-cyan-rgb)_/_0.08)]"
+                        className="magnetic rounded-xl border border-white/8 bg-recessed/70 p-4"
                       >
-                        <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
-                          node.{String(index + 1).padStart(2, "0")}
+                        <p className="font-mono text-[10px] text-muted/60">
+                          {String(index + 1).padStart(2, "0")}
                         </p>
-                        <p className="mt-2 font-display text-lg font-semibold text-silver">{node}</p>
-                        <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r from-cyan ${active === 0 ? "to-violet" : "to-sapphire"}`}
-                            initial={{ width: "0%" }}
-                            animate={{ width: `${74 + index * 4}%` }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                          />
-                        </div>
+                        <p className="mt-2 font-display text-base font-semibold text-silver">{node}</p>
                       </motion.div>
                     ))}
                   </div>

@@ -14,9 +14,9 @@ export function ContributionSignal() {
         {/* Header row */}
         <div className="grid gap-0 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="border-b border-white/10 p-6 lg:border-b-0 lg:border-r">
-            <p className="font-mono text-sm uppercase tracking-[0.28em] text-cyan">open-source signal</p>
-            <h2 className="mt-3 font-display text-4xl font-semibold text-silver md:text-5xl">
-              Contribution graph with engineering context.
+            <p className="font-mono text-sm uppercase tracking-[0.18em] text-muted/60">open-source</p>
+            <h2 className="mt-2 font-display text-4xl font-semibold text-silver md:text-5xl">
+              GitHub contributions
             </h2>
             <p className="mt-5 text-base leading-7 text-muted">
               GirlScript Summer of Code 2026 work focused on AI features, production REST APIs,
