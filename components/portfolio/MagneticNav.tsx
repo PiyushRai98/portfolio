@@ -1,6 +1,6 @@
 "use client";
 
-import { BrainCircuit, Github, Linkedin, Mail, Search } from "lucide-react";
+import { Search, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { profile } from "./data";
@@ -21,48 +21,62 @@ export function MagneticNav() {
     <motion.header
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="fixed left-0 right-0 top-4 z-50 px-4"
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed left-0 right-0 top-0 z-50"
     >
-      <nav className="section-shell shell-border flex h-14 items-center justify-between rounded-[8px] px-3">
-        <a href="#home" className="magnetic flex items-center gap-2 rounded-[8px] px-2 py-2">
-          <span className="grid h-8 w-8 place-items-center rounded-[8px] border border-cyan/30 bg-cyan/10 text-cyan shadow-glow">
-            <BrainCircuit className="h-4 w-4" />
-          </span>
-          <span className="hidden font-mono text-sm font-semibold tracking-[0.18em] text-silver sm:inline">
-            PIYUSH.DEV
-          </span>
+      <nav
+        className="section-shell flex h-14 items-center justify-between px-4"
+        style={{
+          background: "rgb(var(--void-rgb) / 0.92)",
+          borderBottom: "1px solid var(--line)",
+          backdropFilter: "blur(16px)",
+        }}
+      >
+        {/* Logo / name — mono small caps */}
+        <a
+          href="#home"
+          className="font-mono text-sm font-medium tracking-[0.2em] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)]"
+          style={{ color: "var(--vellum)", letterSpacing: "0.2em" }}
+        >
+          PIYUSH.DEV
         </a>
 
+        {/* Nav links */}
         <div className="hidden items-center gap-1 md:flex">
           {navItems.map(([label, href]) => (
             <a
               key={href}
               href={href}
-              className="rounded-[8px] px-3 py-2 text-sm text-muted transition hover:bg-white/[0.06] hover:text-silver"
+              className="relative px-3 py-2 font-mono text-sm transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)] group"
+              style={{ color: "var(--graphite)" }}
             >
-              {label}
+              {/* Underline draw on hover — phosphor 1px rule */}
+              <span
+                className="absolute bottom-1 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-150 group-hover:scale-x-100"
+                style={{ background: "var(--phosphor)" }}
+              />
+              <span className="group-hover:text-[var(--phosphor)] transition-colors duration-150">
+                {label}
+              </span>
             </a>
           ))}
         </div>
 
+        {/* Actions */}
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" aria-label="Open command palette" onClick={openCommandPalette}>
+          <button
+            aria-label="Open command palette (Ctrl+K)"
+            onClick={openCommandPalette}
+            className="flex h-9 w-9 items-center justify-center transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)]"
+            style={{ color: "var(--graphite)", borderRadius: "2px" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--phosphor)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--graphite)")}
+          >
             <Search className="h-4 w-4" />
-          </Button>
-          <Button variant="ghost" size="icon" aria-label="GitHub" asChild>
-            <a href={profile.github} target="_blank" rel="noreferrer">
-              <Github className="h-4 w-4" />
-            </a>
-          </Button>
-          <Button variant="ghost" size="icon" aria-label="LinkedIn" asChild>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">
-              <Linkedin className="h-4 w-4" />
-            </a>
-          </Button>
-          <Button variant="primary" size="sm" asChild className="hidden sm:inline-flex">
-            <a href={`mailto:${profile.email}`}>
-              <Mail className="h-4 w-4" />
+          </button>
+          <Button size="sm" asChild className="hidden sm:inline-flex">
+            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2">
+              <Mail className="h-3.5 w-3.5" />
               Contact
             </a>
           </Button>

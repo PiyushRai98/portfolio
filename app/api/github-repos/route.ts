@@ -18,6 +18,10 @@ export interface GithubRepo {
 export async function GET() {
   const token = process.env.GITHUB_TOKEN;
 
+  // Abort after 8 seconds
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
   try {
     const headers: Record<string, string> = {
       Accept: "application/vnd.github+json",
@@ -31,8 +35,10 @@ export async function GET() {
 
     const res = await fetch(
       `https://api.github.com/users/${GITHUB_LOGIN}/repos?sort=updated&per_page=20&type=owner`,
-      { headers, next: { revalidate } }
+      { headers, next: { revalidate }, signal: controller.signal }
     );
+
+    clearTimeout(timeout);
 
     if (!res.ok) {
       throw new Error(`GitHub API responded with ${res.status}`);
@@ -55,6 +61,7 @@ export async function GET() {
 
     return NextResponse.json(shaped);
   } catch (err) {
+    clearTimeout(timeout);
     console.error("[github-repos]", err);
     return NextResponse.json(
       { error: "Failed to fetch repository data" },

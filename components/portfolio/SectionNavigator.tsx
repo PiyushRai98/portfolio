@@ -9,7 +9,7 @@ const sections = [
   { id: "skills", label: "Skills" },
   { id: "assistant", label: "Assistant" },
   { id: "terminal", label: "Terminal" },
-  { id: "signal", label: "Open-source signal" },
+  { id: "signal", label: "Open Source" },
   { id: "certifications", label: "Credentials" },
   { id: "contact", label: "Contact" },
 ] as const;
@@ -41,7 +41,10 @@ export function SectionNavigator() {
   };
 
   return (
-    <nav aria-label="Section navigation" className="fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 lg:flex">
+    <nav
+      aria-label="Section navigation"
+      className="fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 lg:flex"
+    >
       <ul className="flex flex-col gap-3">
         {sections.map((section) => {
           const active = section.id === activeId;
@@ -56,11 +59,12 @@ export function SectionNavigator() {
                   event.preventDefault();
                   navigate(section.id);
                 }}
-                className={`block h-2.5 w-2.5 rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-base ${
-                  active
-                    ? "border-cyan bg-cyan shadow-glow"
-                    : "border-muted/60 bg-base hover:border-cyan/70 hover:bg-cyan/30"
-                }`}
+                className="block h-2 w-2 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)] focus-visible:outline-offset-2"
+                style={{
+                  borderRadius: "1px",
+                  border: `1px solid ${active ? "var(--phosphor)" : "var(--graphite)"}`,
+                  background: active ? "var(--phosphor)" : "transparent",
+                }}
               />
             </li>
           );

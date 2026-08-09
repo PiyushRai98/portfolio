@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 interface ContributionDay {
   date: string;
@@ -18,7 +17,6 @@ interface ContributionCalendar {
   weeks: ContributionWeek[];
 }
 
-// Map a contribution count to a visual intensity level (0–4)
 function countToLevel(count: number): number {
   if (count === 0) return 0;
   if (count <= 2) return 1;
@@ -27,40 +25,27 @@ function countToLevel(count: number): number {
   return 4;
 }
 
-// Map level to theme-token style — matches the cyan/violet/amber system
-function levelToStyle(level: number): { background: string; boxShadow: string } {
+/**
+ * Copper for low-intensity cells, phosphor for highest-intensity only.
+ * Per brief: draws eye to recent activity without glow effects.
+ */
+function levelToStyle(level: number): { background: string } {
   switch (level) {
     case 0:
-      return {
-        background: "rgb(var(--text-primary-rgb) / 0.04)",
-        boxShadow: "none",
-      };
+      return { background: "rgb(var(--void-raised-rgb))" };
     case 1:
-      return {
-        background: "rgb(var(--accent-violet-rgb) / 0.28)",
-        boxShadow: "none",
-      };
+      return { background: "rgb(var(--copper-rgb) / 0.22)" };
     case 2:
-      return {
-        background: "rgb(var(--accent-violet-rgb) / 0.52)",
-        boxShadow: "none",
-      };
+      return { background: "rgb(var(--copper-rgb) / 0.45)" };
     case 3:
-      return {
-        background: "rgb(var(--accent-cyan-rgb) / 0.55)",
-        boxShadow: "0 0 10px rgb(var(--accent-cyan-rgb) / 0.22)",
-      };
+      return { background: "rgb(var(--copper-rgb) / 0.72)" };
     case 4:
-      return {
-        background: "rgb(var(--accent-cyan-rgb) / 0.88)",
-        boxShadow: "0 0 18px rgb(var(--accent-cyan-rgb) / 0.42)",
-      };
+      return { background: "rgb(var(--phosphor-rgb) / 0.85)" };
     default:
-      return { background: "transparent", boxShadow: "none" };
+      return { background: "transparent" };
   }
 }
 
-// Skeleton for loading state — same grid dimensions, no flash
 function GridSkeleton() {
   return (
     <div className="w-full overflow-x-auto">
@@ -70,8 +55,8 @@ function GridSkeleton() {
             {Array.from({ length: 7 }).map((_, di) => (
               <div
                 key={di}
-                className="h-[11px] w-[11px] rounded-[2px] animate-pulse"
-                style={{ background: "rgb(var(--text-primary-rgb) / 0.06)" }}
+                className="h-[11px] w-[11px]"
+                style={{ background: "rgb(var(--line-rgb) / 0.3)", borderRadius: "1px", animation: "pulse 2s infinite" }}
               />
             ))}
           </div>
@@ -86,22 +71,30 @@ export function ContributionGrid() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    // Client-side timeout — show error if the API takes more than 10s
+    const giveUp = setTimeout(() => setError(true), 10_000);
+
     fetch("/api/github-contributions")
       .then((r) => {
         if (!r.ok) throw new Error("API error");
         return r.json();
       })
-      .then((data) => {
+      .then((data: ContributionCalendar & { error?: string }) => {
+        clearTimeout(giveUp);
         if (data.error) throw new Error(data.error);
         setCalendar(data);
       })
-      .catch(() => setError(true));
+      .catch(() => {
+        clearTimeout(giveUp);
+        setError(true);
+      });
+
+    return () => clearTimeout(giveUp);
   }, []);
 
   if (error) {
-    // Graceful fallback — keeps layout intact
     return (
-      <p className="font-mono text-xs text-muted">
+      <p className="font-mono text-[10px]" style={{ color: "var(--graphite)" }}>
         Could not load contribution data. Check GITHUB_TOKEN in .env.local.
       </p>
     );
@@ -112,11 +105,8 @@ export function ContributionGrid() {
   }
 
   const { weeks, totalContributions } = calendar;
-
-  // Day-of-week labels (Sun=0 … Sat=6)
   const dayLabels = ["Sun", "", "Tue", "", "Thu", "", "Sat"];
 
-  // Month labels — find the first week of each month
   const monthLabels: { label: string; weekIndex: number }[] = [];
   weeks.forEach((week, wi) => {
     const firstDay = week.contributionDays[0];
@@ -132,39 +122,39 @@ export function ContributionGrid() {
 
   return (
     <div className="space-y-2">
-      {/* Total count badge */}
+      {/* Summary + legend row */}
       <div className="flex items-center justify-between">
-        <p className="font-mono text-xs text-muted">
-          <span className="text-silver">{totalContributions.toLocaleString()}</span> contributions in the last year
+        <p className="font-mono text-[10px]" style={{ color: "var(--graphite)" }}>
+          <span style={{ color: "var(--vellum)" }}>{totalContributions.toLocaleString()}</span>
+          {" "}contributions · last year
         </p>
-        {/* Legend */}
         <div className="flex items-center gap-1.5">
-          <span className="font-mono text-[10px] text-muted">Less</span>
-          {[0, 1, 2, 3, 4].map((l) => {
-            const s = levelToStyle(l);
-            return (
-              <div
-                key={l}
-                className="h-[10px] w-[10px] rounded-[2px] border border-white/8"
-                style={{ background: s.background }}
-              />
-            );
-          })}
-          <span className="font-mono text-[10px] text-muted">More</span>
+          <span className="font-mono text-[9px]" style={{ color: "var(--graphite)" }}>Less</span>
+          {[0, 1, 2, 3, 4].map((l) => (
+            <div
+              key={l}
+              className="h-[10px] w-[10px]"
+              style={{ ...levelToStyle(l), border: "1px solid var(--line)", borderRadius: "1px" }}
+            />
+          ))}
+          <span className="font-mono text-[9px]" style={{ color: "var(--graphite)" }}>More</span>
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Heatmap grid */}
       <div className="w-full overflow-x-auto thin-scrollbar pb-1">
         <div style={{ minWidth: "max-content" }}>
-          {/* Month labels row */}
+          {/* Month labels */}
           <div className="mb-1 flex gap-[3px] pl-8">
             {weeks.map((_, wi) => {
               const label = monthLabels.find((m) => m.weekIndex === wi);
               return (
                 <div key={wi} className="w-[11px]">
                   {label && (
-                    <span className="font-mono text-[9px] text-muted whitespace-nowrap">
+                    <span
+                      className="font-mono text-[9px] whitespace-nowrap"
+                      style={{ color: "var(--graphite)" }}
+                    >
                       {label.label}
                     </span>
                   )}
@@ -173,13 +163,15 @@ export function ContributionGrid() {
             })}
           </div>
 
-          {/* Day label + week columns */}
+          {/* Rows */}
           <div className="flex gap-[3px]">
             {/* Day-of-week labels */}
             <div className="mr-1 flex flex-col gap-[3px]">
               {dayLabels.map((d, i) => (
                 <div key={i} className="flex h-[11px] items-center">
-                  <span className="w-7 font-mono text-[9px] text-muted">{d}</span>
+                  <span className="w-7 font-mono text-[9px]" style={{ color: "var(--graphite)" }}>
+                    {d}
+                  </span>
                 </div>
               ))}
             </div>
@@ -187,33 +179,25 @@ export function ContributionGrid() {
             {/* Week columns */}
             {weeks.map((week, wi) => (
               <div key={wi} className="flex flex-col gap-[3px]">
-                {/* Pad incomplete first/last weeks so the grid aligns to Sun */}
                 {Array.from({ length: 7 }).map((_, di) => {
                   const day = week.contributionDays[di];
                   if (!day) {
                     return (
                       <div
                         key={di}
-                        className="h-[11px] w-[11px] rounded-[2px]"
-                        style={{ background: "transparent" }}
+                        className="h-[11px] w-[11px]"
+                        style={{ background: "transparent", borderRadius: "1px" }}
                       />
                     );
                   }
                   const level = countToLevel(day.contributionCount);
                   const style = levelToStyle(level);
                   return (
-                    <motion.div
+                    <div
                       key={day.date}
                       title={`${day.date} — ${day.contributionCount} contribution${day.contributionCount !== 1 ? "s" : ""}`}
-                      initial={{ opacity: 0, scale: 0.7 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.18, delay: (wi * 7 + di) * 0.001 }}
-                      className="h-[11px] w-[11px] rounded-[2px] border border-white/[0.06] cursor-default"
-                      style={{
-                        background: style.background,
-                        boxShadow: style.boxShadow,
-                      }}
+                      className="h-[11px] w-[11px] cursor-default"
+                      style={{ ...style, border: "1px solid var(--line)", borderRadius: "1px" }}
                     />
                   );
                 })}
@@ -222,6 +206,14 @@ export function ContributionGrid() {
           </div>
         </div>
       </div>
+
+      {/* Last updated timestamp */}
+      <p
+        className="font-mono text-[9px] uppercase tracking-[0.14em]"
+        style={{ color: "var(--graphite)", opacity: 0.6 }}
+      >
+        Last updated · {new Date().toLocaleDateString("en", { month: "short", year: "numeric" })}
+      </p>
     </div>
   );
 }

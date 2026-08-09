@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Command } from "cmdk";
 import { Search, X } from "lucide-react";
 import { commandLinks } from "./data";
-import { Button } from "@/components/ui/button";
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
@@ -36,40 +35,82 @@ export function CommandPalette() {
 
   return (
     <>
-      <Button
-        aria-label="Open command palette"
-        variant="secondary"
-        size="sm"
+      {/* Keyboard shortcut hint */}
+      <button
+        aria-label="Open command palette (Ctrl+K)"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-50 hidden border-cyan/25 bg-recessed font-mono sm:inline-flex"
+        className="fixed bottom-5 right-5 z-50 hidden items-center gap-2 px-3 py-2 font-mono text-xs transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)] sm:inline-flex"
+        style={{
+          border: "1px solid var(--line)",
+          background: "rgb(var(--void-raised-rgb) / 0.9)",
+          color: "var(--graphite)",
+          borderRadius: "2px",
+          backdropFilter: "blur(8px)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = "rgb(var(--phosphor-rgb) / 0.4)";
+          e.currentTarget.style.color = "var(--vellum)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = "var(--line)";
+          e.currentTarget.style.color = "var(--graphite)";
+        }}
       >
-        <Search className="h-4 w-4" />
-        Command
-      </Button>
+        <Search className="h-3.5 w-3.5" />
+        <span>Ctrl+K</span>
+      </button>
 
       {open ? (
-        <div className="fixed inset-0 z-[80] flex items-start justify-center bg-base/90 px-4 pt-24 backdrop-blur-xl">
-          <Command className="shell-border w-full max-w-2xl overflow-hidden rounded-[8px]">
-            <div className="flex items-center gap-3 border-b border-white/10 px-4">
-              <Search className="h-5 w-5 text-cyan" />
+        <div
+          className="fixed inset-0 z-[80] flex items-start justify-center px-4 pt-24"
+          style={{ background: "rgb(var(--void-rgb) / 0.9)", backdropFilter: "blur(12px)" }}
+        >
+          <Command
+            className="w-full max-w-xl overflow-hidden"
+            style={{
+              border: "1px solid var(--line)",
+              background: "rgb(var(--void-raised-rgb))",
+              borderRadius: "2px",
+            }}
+          >
+            <div
+              className="flex items-center gap-3 px-4"
+              style={{ borderBottom: "1px solid var(--line)" }}
+            >
+              <Search className="h-4 w-4 shrink-0" style={{ color: "var(--graphite)" }} />
               <Command.Input
                 autoFocus
-                placeholder="Search portfolio systems..."
-                className="h-14 flex-1 bg-transparent text-sm text-silver outline-none placeholder:text-muted"
+                placeholder="Navigate portfolio…"
+                className="h-12 flex-1 bg-transparent font-mono text-sm outline-none"
+                style={{ color: "var(--vellum)" }}
               />
               <button
                 aria-label="Close command palette"
-                className="rounded-[8px] p-2 text-muted transition hover:bg-white/10 hover:text-silver"
+                className="flex h-7 w-7 items-center justify-center transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)]"
+                style={{
+                  border: "1px solid var(--line)",
+                  color: "var(--graphite)",
+                  borderRadius: "2px",
+                }}
                 onClick={() => setOpen(false)}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--vellum)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--graphite)")}
               >
-                <X className="h-4 w-4" />
+                <X className="h-3.5 w-3.5" />
               </button>
             </div>
-            <Command.List className="thin-scrollbar max-h-[420px] overflow-y-auto p-2">
-              <Command.Empty className="px-3 py-8 text-center text-sm text-muted">
+            <Command.List
+              className="thin-scrollbar max-h-[380px] overflow-y-auto p-2"
+              style={{ color: "var(--vellum-dim)" }}
+            >
+              <Command.Empty className="px-3 py-8 text-center font-mono text-xs" style={{ color: "var(--graphite)" }}>
                 No matching module.
               </Command.Empty>
-              <Command.Group heading="Navigation" className="text-xs text-muted [&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2">
+              <Command.Group
+                heading="Navigate"
+                className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.2em]"
+                style={{ "--cmdk-group-heading-color": "var(--graphite)" } as React.CSSProperties}
+              >
                 {commandLinks.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -77,9 +118,10 @@ export function CommandPalette() {
                       key={item.label}
                       value={item.label}
                       onSelect={() => runCommand(item.target)}
-                      className="flex items-center gap-3 rounded-[8px] px-3 py-3 text-sm text-silver outline-none transition data-[selected=true]:bg-cyan/12 data-[selected=true]:text-silver"
+                      className="flex items-center gap-3 px-3 py-2.5 font-mono text-sm outline-none transition-colors duration-150 cursor-pointer"
+                      style={{ borderRadius: "2px" }}
                     >
-                      <Icon className="h-4 w-4 text-cyan" />
+                      <Icon className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--copper)" }} />
                       {item.label}
                     </Command.Item>
                   );

@@ -15,8 +15,6 @@ export function CustomCursor() {
       const x = event.clientX;
       const y = event.clientY;
       setPos({ x, y });
-      document.documentElement.style.setProperty("--cursor-x", `${x}px`);
-      document.documentElement.style.setProperty("--cursor-y", `${y}px`);
     };
 
     window.addEventListener("pointermove", move);
@@ -27,18 +25,14 @@ export function CustomCursor() {
 
   return (
     <>
+      {/* Copper ring — subtle, instrument-style */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed z-[70] h-4 w-4 rounded-full border border-cyan/70 bg-cyan/20 shadow-glow"
+        className="pointer-events-none fixed z-[70] h-4 w-4"
         style={{
+          border: "1px solid rgb(var(--copper-rgb) / 0.6)",
+          borderRadius: "1px",
           transform: `translate3d(${pos.x - 8}px, ${pos.y - 8}px, 0)`,
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed z-[69] h-28 w-28 rounded-full bg-cyan/10 blur-3xl"
-        style={{
-          transform: `translate3d(${pos.x - 56}px, ${pos.y - 56}px, 0)`,
         }}
       />
     </>

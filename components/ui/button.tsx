@@ -3,21 +3,36 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+/**
+ * Instrument Panel button variants.
+ * --phosphor: interactive action (solid fill, void text)
+ * --copper:   status/secondary (outline, no fill)
+ * ghost:      minimal, graphite text
+ *
+ * Border-radius is 2px per brief (sharp, precise edges).
+ * No drop shadows — depth comes from background layers.
+ */
 const buttonVariants = cva(
-  "magnetic inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[8px] text-sm font-medium outline-none transition focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-pitch disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[2px] font-mono text-sm font-medium outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-[var(--phosphor)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--void)] disabled:pointer-events-none disabled:opacity-40",
   {
     variants: {
       variant: {
+        /** Primary CTA — phosphor fill, void text */
         primary:
-          "border border-cyan/45 bg-cyan text-recessed shadow-glow hover:bg-cyan/85 hover:shadow-[0_0_52px_rgb(var(--accent-cyan-rgb)_/_0.35)]",
+          "border border-[var(--phosphor)] bg-[var(--phosphor)] text-[var(--void)] hover:bg-[rgb(var(--phosphor-rgb)/0.88)] hover:border-[rgb(var(--phosphor-rgb)/0.88)]",
+        /** Default — same as primary */
+        default:
+          "border border-[var(--phosphor)] bg-[var(--phosphor)] text-[var(--void)] hover:bg-[rgb(var(--phosphor-rgb)/0.88)] hover:border-[rgb(var(--phosphor-rgb)/0.88)]",
+        /** Secondary — phosphor outline, fills on hover */
         secondary:
-          "border border-white/12 bg-white/[0.06] text-silver hover:border-cyan/45 hover:bg-cyan/10",
+          "border border-[var(--phosphor)] bg-transparent text-[var(--phosphor)] hover:bg-[var(--phosphor)] hover:text-[var(--void)]",
+        /** Ghost — graphite text, minimal border on hover */
         ghost:
-          "border border-transparent bg-transparent text-muted hover:border-white/12 hover:bg-white/[0.06] hover:text-silver",
+          "border border-transparent bg-transparent text-[var(--graphite)] hover:border-[var(--line)] hover:text-[var(--vellum)]",
       },
       size: {
         default: "h-11 px-5",
-        sm: "h-9 px-3",
+        sm: "h-9 px-3 text-xs",
         icon: "h-10 w-10",
       },
     },

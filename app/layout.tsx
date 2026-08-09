@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const space = Space_Grotesk({
+/**
+ * Instrument Serif — display type for hero name, section titles.
+ * IBM Plex Mono    — data/UI mono (fallback for Berkeley Mono, licensing).
+ * Body             — system-ui stack via CSS var; General Sans is a commercial
+ *                    font not on Google Fonts, falls back gracefully.
+ */
+const instrumentSerif = Instrument_Serif({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Piyush Kumar Rai | AI Engineer & Full-Stack Software Engineer",
   description:
-    "Interactive AI operating-system portfolio for Piyush Kumar Rai, showcasing generative AI, agentic systems, RAG, MERN, microservices, and production-grade engineering.",
+    "Portfolio of Piyush Kumar Rai — AI/ML Engineer, Generative AI Engineer, and Full-Stack Software Engineer building production-grade generative AI, multi-agent systems, RAG pipelines, and scalable backend architectures.",
   keywords: [
     "Piyush Kumar Rai",
     "AI Engineer",
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Piyush Kumar Rai | AI Engineer & Full-Stack Software Engineer",
     description:
-      "A cinematic AI operating-system portfolio for production-grade AI systems, agentic workflows, and full-stack engineering.",
+      "Portfolio of Piyush Kumar Rai — AI/ML Engineer building production-grade generative AI, multi-agent systems, RAG pipelines, and full-stack applications.",
     type: "website",
     locale: "en_IN",
   },
@@ -52,7 +55,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${geist.variable} ${space.variable} ${mono.variable}`} suppressHydrationWarning>
+      <body
+        className={`${instrumentSerif.variable} ${ibmPlexMono.variable}`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

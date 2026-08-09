@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { stats } from "./data";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -12,6 +11,8 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
   useEffect(() => {
     if (!inView) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) { setCurrent(value); return; }
     let frame = 0;
     const total = 48;
     const interval = window.setInterval(() => {
@@ -32,22 +33,36 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export function StatsStrip() {
   return (
-    <section className="section-shell section-layer-recessed py-10">
-      <div className="grid gap-3 md:grid-cols-4">
+    <section className="section-shell py-10">
+      {/* Thin dividers between stats — no cards */}
+      <div className="grid grid-cols-2 gap-0 md:grid-cols-4">
         {stats.map((stat, index) => (
           <motion.a
             key={stat.label}
             href={stat.href}
-            initial={{ opacity: 0.76, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: index * 0.06 }}
-            className="shell-border magnetic rounded-[8px] p-5 transition hover:border-cyan/40"
+            transition={{ duration: 0.3, delay: index * 0.06 }}
+            className="group px-6 py-5 transition-colors duration-150 first:pl-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)]"
+            style={{
+              borderRight: index < stats.length - 1 ? "1px solid var(--line)" : "none",
+            }}
           >
-            <p className="font-display text-4xl font-semibold text-silver">
+            {/* Stat number — mono, vellum */}
+            <p
+              className="font-mono text-3xl font-medium transition-colors duration-150 group-hover:text-[var(--phosphor)]"
+              style={{ color: "var(--vellum)" }}
+            >
               <Counter value={stat.value} suffix={stat.suffix} />
             </p>
-            <p className="mt-2 text-sm text-muted">{stat.label}</p>
+            {/* Label — graphite, uppercase caption */}
+            <p
+              className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em]"
+              style={{ color: "var(--graphite)" }}
+            >
+              {stat.label}
+            </p>
           </motion.a>
         ))}
       </div>

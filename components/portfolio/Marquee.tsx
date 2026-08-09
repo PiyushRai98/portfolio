@@ -11,16 +11,38 @@ const items = [
   "Vector Search",
 ];
 
+/** Separator glyph — copper, low opacity */
+function Sep() {
+  return (
+    <span
+      className="font-mono text-xs select-none"
+      style={{ color: "var(--copper)", opacity: 0.5 }}
+      aria-hidden="true"
+    >
+      ·
+    </span>
+  );
+}
+
 export function Marquee() {
   return (
-    <div className="overflow-hidden border-y border-white/10 bg-white/[0.025] py-4">
-      <div className="flex w-max animate-marquee gap-8 whitespace-nowrap">
+    <div
+      className="overflow-hidden py-3"
+      style={{ borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}
+    >
+      <div
+        className="flex w-max gap-6 whitespace-nowrap"
+        style={{ animation: "marquee 28s linear infinite" }}
+      >
         {[...items, ...items].map((item, index) => (
-          <span
-            key={`${item}-${index}`}
-            className="font-mono text-xs uppercase tracking-[0.28em] text-muted"
-          >
-            {item}
+          <span key={`${item}-${index}`} className="inline-flex items-center gap-6">
+            <span
+              className="font-mono text-[10px] uppercase tracking-[0.28em]"
+              style={{ color: "var(--graphite)" }}
+            >
+              {item}
+            </span>
+            <Sep />
           </span>
         ))}
       </div>

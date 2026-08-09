@@ -1,107 +1,232 @@
 "use client";
 
-import { ArrowDown, Brain, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-import { NeuralScene } from "./NeuralScene";
-import { ScrambleText } from "./ScrambleText";
 import { Button } from "@/components/ui/button";
 import { profile } from "./data";
 
 const roles = ["Agentic AI", "RAG Systems", "LLM Orchestration", "MERN Microservices"];
 
+/** Faint PCB-trace background — opacity ~0.06, static, not a focal element */
+function PcbBackground() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+    >
+      {/* Oscilloscope grid */}
+      <div
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgb(var(--copper-rgb) / 1) 1px, transparent 1px),
+            linear-gradient(90deg, rgb(var(--copper-rgb) / 1) 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Copper trace lines — horizontal signal traces */}
+      <svg
+        className="absolute inset-0 h-full w-full opacity-[0.05]"
+        viewBox="0 0 1440 800"
+        preserveAspectRatio="xMidYMid slice"
+        role="presentation"
+      >
+        <line x1="0" y1="200" x2="400" y2="200" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="400" y1="200" x2="400" y2="320" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="400" y1="320" x2="900" y2="320" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="900" y1="320" x2="900" y2="160" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="900" y1="160" x2="1440" y2="160" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="0" y1="560" x2="320" y2="560" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="320" y1="560" x2="320" y2="640" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="320" y1="640" x2="1100" y2="640" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="1100" y1="640" x2="1100" y2="480" stroke="var(--copper)" strokeWidth="1" />
+        <line x1="1100" y1="480" x2="1440" y2="480" stroke="var(--copper)" strokeWidth="1" />
+        {/* Via pads */}
+        <circle cx="400" cy="200" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+        <circle cx="400" cy="320" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+        <circle cx="900" cy="320" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+        <circle cx="900" cy="160" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+        <circle cx="320" cy="560" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+        <circle cx="320" cy="640" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+        <circle cx="1100" cy="640" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+        <circle cx="1100" cy="480" r="3" fill="none" stroke="var(--copper)" strokeWidth="1" />
+      </svg>
+    </div>
+  );
+}
+
+const heroVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay, ease: "easeOut" },
+  }),
+};
+
 export function Hero() {
   return (
-    <section id="home" className="section-layer-base relative min-h-[92svh] overflow-hidden pt-28">
-      <NeuralScene />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-base to-transparent" />
-      <div className="section-shell relative z-10 grid min-h-[calc(92svh-7rem)] items-center gap-10 pb-10 lg:grid-cols-[1.02fr_0.74fr]">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl"
-        >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-[8px] border border-cyan/20 bg-cyan/8 px-3 py-2 font-mono text-xs uppercase tracking-[0.22em] text-cyan">
-            <Sparkles className="h-4 w-4" />
-            <ScrambleText text="Production AI Systems Engineer" />
-          </div>
+    <section
+      id="home"
+      className="section-layer-base relative min-h-[92svh] overflow-hidden pt-28"
+    >
+      <PcbBackground />
 
-          <h1 className="font-script text-5xl leading-[1.05] tracking-normal text-silver sm:text-6xl md:text-7xl lg:text-8xl">
+      {/* Bottom fade */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
+        style={{ background: "linear-gradient(to top, var(--void), transparent)" }}
+      />
+
+      <div className="section-shell relative z-10 grid min-h-[calc(92svh-7rem)] items-center gap-10 pb-10 lg:grid-cols-[1.1fr_0.7fr]">
+
+        {/* ── Left: name + copy + CTAs ── */}
+        <div>
+          {/* Eyebrow — mono caption */}
+          <motion.p
+            custom={0}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-[var(--graphite)]"
+          >
+            AI/ML · Generative AI · Full-Stack
+          </motion.p>
+
+          {/* Name — Instrument Serif, hero scale */}
+          <motion.h1
+            custom={0.08}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="font-display text-[var(--vellum)] leading-[1.04]"
+            style={{ fontSize: "clamp(2.75rem, 8vw, 5.5rem)", letterSpacing: "-0.01em", fontWeight: 400 }}
+          >
             {profile.name}
-          </h1>
-          <p className="mt-6 max-w-3xl text-balance text-xl leading-8 text-silver md:text-2xl md:leading-9">
-            {profile.headline}
-          </p>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted md:text-lg">
-            I build intelligent software that fuses generative AI, multi-agent architecture,
-            retrieval systems, and scalable full-stack engineering into products that feel alive.
-          </p>
+          </motion.h1>
 
-          <div className="mt-8 flex flex-wrap items-start gap-3">
-            <div className="flex flex-col gap-2">
-              <Button asChild>
-                <a href="#projects">
-                  <Brain className="h-4 w-4" />
-                  Enter AI OS
-                </a>
-              </Button>
-              <p className="font-mono text-xs text-muted">Switch to interactive system view</p>
-            </div>
-            <Button variant="secondary" asChild>
-              <a href={profile.github} target="_blank" rel="noreferrer">
+          {/* Tagline */}
+          <motion.p
+            custom={0.16}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="mt-5 max-w-[48ch] text-base leading-7 text-[var(--vellum-dim)] md:text-lg"
+          >
+            I build intelligent software that fuses generative AI, multi-agent
+            architecture, retrieval systems, and scalable full-stack engineering
+            into products that feel alive.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            custom={0.24}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
+            <Button asChild>
+              <a href="#projects">View Systems</a>
+            </Button>
+            <Button variant="ghost" asChild>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2"
+              >
                 <Github className="h-4 w-4" />
                 GitHub
               </a>
             </Button>
-            <Button variant="secondary" asChild>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer">
+            <Button variant="ghost" asChild>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2"
+              >
                 <Linkedin className="h-4 w-4" />
                 LinkedIn
               </a>
             </Button>
             <Button variant="ghost" asChild>
-              <a href={`mailto:${profile.email}`}>
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center gap-2"
+              >
                 <Mail className="h-4 w-4" />
                 Email
               </a>
             </Button>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
+        {/* ── Right: System status panel ── */}
         <motion.aside
-          initial={{ opacity: 0, x: 28 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="shell-border holo-scan relative overflow-hidden rounded-[8px] p-4"
+          custom={0.12}
+          variants={heroVariants}
+          initial="hidden"
+          animate="visible"
+          className="shell-border overflow-hidden"
+          style={{ borderRadius: "2px" }}
         >
-          <div className="relative z-10">
-            <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3">
-              <div>
-                <p className="font-mono text-xs uppercase tracking-[0.24em] text-muted">system.status</p>
-                <p className="mt-1 text-sm text-silver">AI control layer online</p>
+          {/* Panel header */}
+          <div
+            className="flex items-center justify-between border-b px-4 py-3"
+            style={{ borderColor: "var(--line)" }}
+          >
+            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--graphite)]">
+              system.status
+            </span>
+            <div className="flex items-center gap-1.5">
+              {/* Copper status dot — informational, not interactive */}
+              <span
+                className="h-2 w-2 rounded-full"
+                style={{ background: "var(--copper)" }}
+              />
+              <span className="font-mono text-[10px] text-[var(--copper)]">online</span>
+            </div>
+          </div>
+
+          {/* Status rows */}
+          <div className="p-4 space-y-2">
+            {roles.map((role) => (
+              <div
+                key={role}
+                className="flex items-center gap-3 px-3 py-2.5 border"
+                style={{ borderColor: "var(--line)", background: "rgb(var(--void-rgb) / 0.6)", borderRadius: "2px" }}
+              >
+                {/* Copper indicator — status/informational */}
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ background: "var(--copper)" }}
+                />
+                <span className="font-mono text-sm text-[var(--vellum)]">{role}</span>
               </div>
-              <span className="h-2.5 w-2.5 rounded-full bg-cyan shadow-glow" />
-            </div>
-            <div className="grid gap-3">
-              {roles.map((role) => (
-                <div
-                  key={role}
-                  className="flex items-center rounded-[8px] border border-white/10 bg-elevated px-3 py-3"
-                >
-                  <span className="font-mono text-sm text-silver">{role}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 flex items-center gap-2 rounded-[8px] border border-sapphire/25 bg-sapphire/10 px-3 py-3 text-sm text-silver">
-              <MapPin className="h-4 w-4 text-cyan" />
-              {profile.location}
-            </div>
+            ))}
+          </div>
+
+          {/* Location row */}
+          <div
+            className="flex items-center gap-3 border-t px-4 py-3"
+            style={{ borderColor: "var(--line)" }}
+          >
+            <MapPin className="h-3.5 w-3.5 shrink-0 text-[var(--graphite)]" />
+            <span className="font-mono text-xs text-[var(--graphite)]">{profile.location}</span>
           </div>
         </motion.aside>
       </div>
-      <div className="section-shell relative z-10 -mt-2 flex items-center justify-between border-t border-white/10 py-4 font-mono text-xs uppercase tracking-[0.22em] text-muted">
+
+      {/* Bottom strip */}
+      <div
+        className="section-shell relative z-10 -mt-2 flex items-center justify-between border-t py-4 font-mono text-xs uppercase tracking-[0.22em]"
+        style={{ borderColor: "var(--line)", color: "var(--graphite)" }}
+      >
         <span>AI Systems</span>
-        <ArrowDown className="h-4 w-4 animate-bounce text-cyan" />
+        <ArrowDown className="h-4 w-4" style={{ color: "var(--copper)" }} />
         <span>Full-Stack Engineering</span>
       </div>
     </section>

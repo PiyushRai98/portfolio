@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import gsap from "gsap";
 import { AssistantPanel } from "@/components/portfolio/AssistantPanel";
 import { Certifications } from "@/components/portfolio/Certifications";
 import { CommandPalette } from "@/components/portfolio/CommandPalette";
@@ -20,25 +18,34 @@ import { TerminalPanel } from "@/components/portfolio/TerminalPanel";
 import { SectionNavigator } from "@/components/portfolio/SectionNavigator";
 
 export default function Home() {
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
-    gsap.fromTo(
-      ".boot-line",
-      { scaleX: 0 },
-      { scaleX: 1, duration: 1.15, ease: "power3.out", transformOrigin: "left center" },
-    );
-  }, []);
-
   return (
-    <main className="relative min-h-screen overflow-hidden bg-base">
+    <main className="relative min-h-screen overflow-hidden bg-[var(--void)]">
       <SmoothScroll />
       <CustomCursor />
       <CommandPalette />
       <MagneticNav />
       <SectionNavigator />
       <div className="noise" />
-      <div className="boot-line fixed left-0 top-0 z-[90] h-px w-full origin-left bg-gradient-to-r from-cyan via-sapphire to-transparent" />
+
+      {/* Continuous copper waveform trace — cross-section structural device */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed left-1/2 top-0 z-[1] h-full w-px -translate-x-1/2 opacity-[0.06]"
+        style={{
+          background: `repeating-linear-gradient(
+            to bottom,
+            var(--copper) 0px,
+            var(--copper) 60px,
+            transparent 60px,
+            transparent 68px,
+            var(--copper) 68px,
+            var(--copper) 72px,
+            transparent 72px,
+            transparent 80px
+          )`,
+        }}
+      />
+
       <Hero />
       <Marquee />
       <StatsStrip />
@@ -50,7 +57,8 @@ export default function Home() {
       <ContributionSignal />
       <Certifications />
       <ContactDock />
-      <footer className="section-shell border-t border-white/10 py-8 text-center font-mono text-xs uppercase tracking-[0.18em] text-muted">
+
+      <footer className="section-shell border-t border-[var(--line)] py-8 text-center font-mono text-xs uppercase tracking-[0.18em] text-[var(--graphite)]">
         Piyush Kumar Rai · AI/ML Engineer · Generative AI Engineer · Full-Stack Software Engineer
       </footer>
     </main>

@@ -1,60 +1,95 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, ExternalLink, ShieldCheck } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { certifications } from "./data";
 
 export function Certifications() {
   return (
-    <section id="certifications" className="section-layer-recessed relative py-24">
+    <section id="certifications" className="section-layer-recessed relative py-16">
       <div className="section-shell">
-        <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="font-mono text-sm uppercase tracking-[0.28em] text-amber">credential vault</p>
-            <h2 className="mt-3 font-display text-4xl font-semibold text-silver md:text-6xl">
-              Verified learning, displayed as achievement systems.
+            <p
+              className="font-mono text-[10px] uppercase tracking-[0.28em]"
+              style={{ color: "var(--graphite)" }}
+            >
+              credentials
+            </p>
+            <h2
+              className="mt-2 font-display"
+              style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 400, color: "var(--vellum-dim)" }}
+            >
+              Verified certifications
             </h2>
           </div>
-          <ShieldCheck className="hidden h-12 w-12 text-amber md:block" />
+          {/* Copper checkmark — informational, not interactive */}
+          <svg
+            className="hidden h-8 w-8 md:block"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--copper)"
+            strokeWidth="1.5"
+            opacity={0.6}
+            aria-hidden="true"
+          >
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Dense list layout — line dividers, not cards */}
+        <div
+          style={{ border: "1px solid var(--line)", borderRadius: "2px" }}
+        >
           {certifications.map((cert, index) => (
             <motion.a
               key={cert.name}
               href={cert.href}
               target="_blank"
               rel="noreferrer"
-              initial={{ opacity: 0.72, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: index * 0.04 }}
-              className="shell-border magnetic group relative min-h-[150px] overflow-hidden rounded-[8px] p-5 transition hover:border-amber/40 hover:shadow-[0_0_34px_rgb(var(--accent-amber-rgb)/0.18)]"
+              transition={{ duration: 0.3, delay: index * 0.03 }}
+              className="group flex items-center justify-between gap-4 px-4 py-3 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)]"
+              style={{
+                borderBottom: index < certifications.length - 1 ? `1px solid var(--line)` : "none",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgb(var(--void-raised-rgb))")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber to-transparent opacity-60" />
+              {/* Copper verified indicator */}
+              <svg
+                className="h-3.5 w-3.5 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--copper)"
+                strokeWidth="1.5"
+                opacity={0.7}
+                aria-hidden="true"
+              >
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
 
-              {/* Icon + external link indicator */}
-              <div className="flex items-start justify-between">
-                <Award className="h-6 w-6 text-amber transition group-hover:scale-110" />
-                <ExternalLink className="h-3.5 w-3.5 text-muted opacity-0 transition group-hover:opacity-100" />
+              <div className="min-w-0 flex-1">
+                <p
+                  className="font-mono text-xs font-medium transition-colors duration-150 group-hover:text-[var(--vellum)]"
+                  style={{ color: "var(--vellum-dim)" }}
+                >
+                  {cert.name}
+                </p>
+                <p className="mt-0.5 font-mono text-[10px]" style={{ color: "var(--graphite)" }}>
+                  {cert.issuer}
+                  {cert.note && (
+                    <span style={{ color: "var(--copper)", opacity: 0.8 }}> · {cert.note}</span>
+                  )}
+                </p>
               </div>
 
-              {/* Cert name */}
-              <p className="mt-5 font-display text-xl font-semibold text-silver group-hover:text-amber transition-colors">
-                {cert.name}
-              </p>
-
-              {/* Issuer + optional note */}
-              <p className="mt-2 font-mono text-xs text-muted">
-                {cert.issuer}
-                {cert.note && (
-                  <span className="ml-1 text-amber/70">· {cert.note}</span>
-                )}
-              </p>
-
-              <p className="mt-3 font-mono text-xs uppercase tracking-[0.18em] text-muted/60">
-                achievement.unlocked
-              </p>
+              <ExternalLink
+                className="h-3 w-3 shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+                style={{ color: "var(--graphite)" }}
+              />
             </motion.a>
           ))}
         </div>

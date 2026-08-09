@@ -34,6 +34,10 @@ export async function GET() {
     );
   }
 
+  // Abort after 8 seconds — prevents the page from hanging indefinitely
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
   try {
     const res = await fetch("https://api.github.com/graphql", {
       method: "POST",
@@ -44,7 +48,10 @@ export async function GET() {
       },
       body: JSON.stringify({ query, variables: { login: GITHUB_LOGIN } }),
       next: { revalidate },
+      signal: controller.signal,
     });
+
+    clearTimeout(timeout);
 
     if (!res.ok) {
       throw new Error(`GitHub API responded with ${res.status}`);
@@ -65,6 +72,7 @@ export async function GET() {
 
     return NextResponse.json(calendar);
   } catch (err) {
+    clearTimeout(timeout);
     console.error("[github-contributions]", err);
     return NextResponse.json(
       { error: "Failed to fetch contribution data" },
