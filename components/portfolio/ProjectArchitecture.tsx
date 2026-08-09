@@ -12,7 +12,7 @@ export function ProjectArchitecture() {
   const Icon = project.icon;
 
   return (
-    <section id="projects" className="section-layer-recessed relative py-24">
+    <section id="projects" className="section-layer-recessed relative py-28">
       {/* Faint PCB grid texture */}
       <div
         aria-hidden="true"

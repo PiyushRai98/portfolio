@@ -9,7 +9,7 @@ import { RecentRepos } from "./RecentRepos";
 
 export function ContributionSignal() {
   return (
-    <section id="signal" className="section-shell section-layer-base py-24">
+    <section id="signal" className="section-shell section-layer-base py-20">
       <div
         className="overflow-hidden"
         style={{ border: "1px solid var(--line)", borderRadius: "2px" }}

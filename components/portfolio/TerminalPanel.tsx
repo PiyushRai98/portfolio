@@ -42,7 +42,7 @@ export function TerminalPanel() {
   }, [visible]);
 
   return (
-    <section id="terminal" className="section-shell section-layer-base py-24">
+    <section id="terminal" className="section-shell section-layer-base py-16">
       <div className="grid gap-8 lg:grid-cols-[0.55fr_0.45fr] lg:items-center">
 
         {/* Terminal — reuses the shared TerminalChrome component */}

@@ -6,7 +6,7 @@ import { certifications } from "./data";
 
 export function Certifications() {
   return (
-    <section id="certifications" className="section-layer-recessed relative py-16">
+    <section id="certifications" className="section-layer-recessed relative py-12">
       <div className="section-shell">
         <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>

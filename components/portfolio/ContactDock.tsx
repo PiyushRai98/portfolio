@@ -6,7 +6,7 @@ import { profile } from "./data";
 
 export function ContactDock() {
   return (
-    <section id="contact" className="section-shell section-layer-recessed pb-20 pt-24">
+    <section id="contact" className="section-shell section-layer-recessed pb-24 pt-28">
       <div
         className="relative overflow-hidden p-6 md:p-10"
         style={{ border: "1px solid var(--line)", borderRadius: "2px" }}

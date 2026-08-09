@@ -105,17 +105,20 @@ function OscilloscopeLane({
             style={{ borderBottom: `1px solid var(--line)` }}
           >
             <div className="flex items-center gap-2">
+              {/* Dot dims with trace — purely decorative, not text */}
               <span
                 className="h-1.5 w-1.5 rounded-full"
-                style={{ background: lane.color, opacity: active ? 1 : 0.45 }}
+                style={{ background: lane.color, opacity: active ? 1 : 0.35 }}
               />
+              {/* Label text: always full graphite — contrast-safe regardless of active state */}
               <span
                 className="font-mono text-[10px] uppercase tracking-[0.22em]"
-                style={{ color: active ? "var(--vellum)" : "var(--graphite)" }}
+                style={{ color: "var(--graphite)" }}
               >
                 {lane.label}
               </span>
             </div>
+            {/* ch label: always full graphite */}
             <span
               className="font-mono text-[9px] uppercase tracking-[0.14em]"
               style={{ color: "var(--graphite)" }}

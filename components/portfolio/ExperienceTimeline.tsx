@@ -6,7 +6,7 @@ import { experienceTimeline } from "./data";
 
 export function ExperienceTimeline() {
   return (
-    <section id="experience" className="section-shell section-layer-base py-24">
+    <section id="experience" className="section-shell section-layer-base py-20">
       <div className="mb-12 grid gap-6 md:grid-cols-[0.7fr_0.3fr] md:items-end">
         <div>
           <p

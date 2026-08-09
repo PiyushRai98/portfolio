@@ -87,7 +87,7 @@ export function AssistantPanel() {
   };
 
   return (
-    <section id="assistant" className="section-shell section-layer-recessed py-24">
+    <section id="assistant" className="section-shell section-layer-recessed py-16">
       <div className="grid gap-8 lg:grid-cols-[0.42fr_0.58fr] lg:items-start">
         {/* Left: intro */}
         <div>
