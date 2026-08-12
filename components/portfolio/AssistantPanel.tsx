@@ -4,28 +4,80 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Bot, Send, UserRound } from "lucide-react";
 import { TerminalChrome } from "./TerminalChrome";
 
+/* ─── Suggestion chips ────────────────────────────────────────────────────── */
 const suggestions = [
   "What does Piyush build?",
-  "Explain A.R.C.A.N.E",
-  "Why hire him?",
-  "Show AI skills",
+  "Tell me about his projects",
+  "What's his tech stack?",
+  "Why should I hire him?",
 ];
 
-function answerFor(prompt: string) {
-  const normalized = prompt.toLowerCase();
-  if (normalized.includes("arcane")) {
-    return "A.R.C.A.N.E is Piyush's flagship multi-agent control center: autonomous reasoning, contextual memory, tool calling, RAG pipelines, LLM orchestration, and scalable backend architecture.";
+/* ─── Q&A engine — grounded in data.ts ───────────────────────────────────── */
+function answerFor(prompt: string): string {
+  const q = prompt.toLowerCase().trim();
+
+  /* ── Projects ── */
+  if (q.includes("research assistant") || q.includes("rag") || q.includes("ibm granite")) {
+    return "The AI Research Assistant is a RAG platform that turns research PDFs into an interactive Q&A tool. It uses IBM Granite LLM, BGE-small embeddings, FAISS vector indexing, and a Streamlit frontend — delivering citation-grounded answers, summaries, flashcards, quizzes, and document comparison.";
   }
-  if (normalized.includes("skill") || normalized.includes("ai")) {
-    return "His AI stack spans generative AI, agentic AI, RAG, LangChain, LLM orchestration, prompt engineering, NLP, TensorFlow, PyTorch, OpenAI APIs, and Hugging Face — paired with MERN and backend systems.";
+  if (q.includes("redrob") || q.includes("recruiter") || q.includes("ranking") || q.includes("lightgbm")) {
+    return "Redrob AI Recruiter shortlists the top 100 candidates from 100K+ profiles. It uses Hybrid Retrieval (BM25 + Dense + RRF), LightGBM LambdaMART with 104 engineered ranking features, Sentence Transformers, and a Streamlit + Plotly dashboard for explainable AI insights — ~38s end-to-end inference.";
   }
-  if (normalized.includes("hire") || normalized.includes("recruit")) {
-    return "Piyush combines AI engineering depth, full-stack execution, open-source discipline, CI/CD familiarity, and a refined eye for user experience. That overlap is valuable for production AI product teams.";
+  if (q.includes("collabcode") || q.includes("collab") || q.includes("collaborative") || q.includes("monaco")) {
+    return "CollabCode is a real-time collaborative code editor built on the MERN stack. It uses Monaco Editor, Yjs CRDTs for conflict-free sync, Socket.IO, Redis Pub/Sub, JWT auth, Docker sandboxed execution, Kubernetes deployment, and GitHub Actions CI/CD.";
   }
-  if (normalized.includes("experience") || normalized.includes("gssoc") || normalized.includes("ibm")) {
-    return "He is an IBM SkillsBuild AI Automation intern and a GirlScript Summer of Code 2026 open-source contributor, working across AI workflows, REST APIs, MERN apps, GitHub Actions, and LangChain-based LLM systems.";
+  if (q.includes("project") || q.includes("build") || q.includes("built") || q.includes("system") || q.includes("what does")) {
+    return "Piyush has built three flagship systems: (1) AI Research Assistant — a RAG platform with IBM Granite and FAISS. (2) Redrob AI Recruiter — a 100K+ profile ranking engine with LightGBM and Hybrid Retrieval. (3) CollabCode — a real-time collaborative editor with MERN, Socket.IO, and Yjs CRDTs. Ask about any one for details.";
   }
-  return "Piyush is an AI/ML and Full-Stack Software Engineer from Noida building production-grade generative AI, multi-agent systems, RAG pipelines, real-time apps, and scalable backend architectures.";
+
+  /* ── Skills & stack ── */
+  if (q.includes("stack") || q.includes("tech") || q.includes("tool") || q.includes("language")) {
+    return "Core stack: Python, JavaScript/TypeScript, React, Next.js, Node.js, Express, MongoDB, Redis, PostgreSQL. AI/ML: LangChain, RAG, LLM orchestration, OpenAI API, Hugging Face, TensorFlow, PyTorch, FAISS, Prompt Engineering. Infra: Docker, Kubernetes, GitHub Actions, CI/CD, Prometheus.";
+  }
+  if (q.includes("ai") || q.includes("ml") || q.includes("machine learning") || q.includes("skill")) {
+    return "AI stack: Generative AI, Agentic AI, RAG pipelines, LangChain, LLM Orchestration, Prompt Engineering, NLP, TensorFlow, PyTorch, OpenAI API, Hugging Face, IBM Granite, FAISS, BGE Embeddings. Applied across production systems — not just tutorials.";
+  }
+  if (q.includes("frontend") || q.includes("react") || q.includes("next")) {
+    return "Frontend: React.js, Next.js, Tailwind CSS, TypeScript, HTML5, CSS3, Socket.IO (client), Monaco Editor. This portfolio itself is built in Next.js 15 with Framer Motion and a custom design system.";
+  }
+  if (q.includes("backend") || q.includes("database") || q.includes("server") || q.includes("api")) {
+    return "Backend: Node.js, Express.js, REST APIs, WebSockets, Socket.IO, Microservices, MongoDB, PostgreSQL, Redis, Pinecone, Vector Databases. Built production-grade distributed systems with real-time sync and scalable data layers.";
+  }
+
+  /* ── Experience ── */
+  if (q.includes("ibm") || q.includes("skillsbuild") || q.includes("intern") || q.includes("internship")) {
+    return "Piyush is an IBM SkillsBuild Academic Intern (June 2026 – present) under AICTE × IBM, building AI-powered automation workflows and intelligent solutions using Agentic AI, workflow orchestration, and modern AI development practices.";
+  }
+  if (q.includes("gssoc") || q.includes("girlscript") || q.includes("open source") || q.includes("opensource") || q.includes("pr") || q.includes("contribution")) {
+    return "He is a GirlScript Summer of Code 2026 contributor (AI & Agents track) — 5+ merged PRs shipping AI features, RAG integrations, and agentic workflows. He automated CI/CD via GitHub Actions, cutting developer overhead by ~40%, and applied prompt engineering across 3+ open-source projects.";
+  }
+  if (q.includes("education") || q.includes("degree") || q.includes("college") || q.includes("jss") || q.includes("btech") || q.includes("university")) {
+    return "B.Tech in Electronics & Communication Engineering at JSS Academy of Technical Education, Noida (expected July 2027). The ECE foundation underpins his systems-thinking approach to AI and software architecture.";
+  }
+  if (q.includes("experience") || q.includes("work") || q.includes("background") || q.includes("resume")) {
+    return "Piyush has two active roles: IBM SkillsBuild AI Automation Intern (AICTE × IBM, June 2026) and GirlScript Summer of Code 2026 open-source contributor (AI & Agents track). Currently pursuing B.Tech ECE at JSSATEN, Noida (expected 2027).";
+  }
+
+  /* ── Hire / contact ── */
+  if (q.includes("hire") || q.includes("recruit") || q.includes("why") || q.includes("contact") || q.includes("available")) {
+    return "Piyush is available for AI engineering, generative AI, full-stack, and production backend roles. He brings a rare combination: AI engineering depth (RAG, agentic systems, LLM orchestration), full-stack execution (MERN), open-source discipline (5+ merged PRs), and DevOps familiarity (Docker, K8s, CI/CD). Reach him at piyushrai961@yahoo.com.";
+  }
+
+  /* ── Certifications ── */
+  if (q.includes("cert") || q.includes("course") || q.includes("deeplearning") || q.includes("andrew ng") || q.includes("credential")) {
+    return "Certifications from DeepLearning.AI: Machine Learning Specialization (Andrew Ng / Stanford), Deep Learning Specialization, NLP Specialization, TensorFlow Developer Professional Certificate, Generative AI for Software Development, Mathematics for ML, Data Analytics, and PyTorch for Deep Learning. Plus freeCodeCamp certifications.";
+  }
+
+  /* ── Location / about ── */
+  if (q.includes("location") || q.includes("where") || q.includes("noida") || q.includes("india")) {
+    return "Piyush is based in Noida, Uttar Pradesh, India. He is open to remote opportunities globally and on-site roles in India.";
+  }
+  if (q.includes("who") || q.includes("about") || q.includes("piyush") || q.includes("introduce")) {
+    return "Piyush Kumar Rai is an AI/ML Engineer, Generative AI Engineer, and Full-Stack Software Engineer from Noida, India. He builds production-grade generative AI, multi-agent systems, RAG pipelines, real-time applications, and scalable backend architectures.";
+  }
+
+  /* ── Fallback ── */
+  return "I can answer questions about Piyush's projects (AI Research Assistant, Redrob AI Recruiter, CollabCode), his tech stack, experience (IBM internship, GSSoC), certifications, or how to get in touch. What would you like to know?";
 }
 
 /* Animated text reveal — character by character */
@@ -53,7 +105,7 @@ export function AssistantPanel() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      text: "Portfolio assistant initialized. Ask about Piyush's systems, stack, experience, or projects.",
+      text: "Portfolio assistant ready. Ask about projects, skills, experience, certifications, or how to get in touch.",
     },
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);
