@@ -60,7 +60,7 @@ function answerFor(prompt: string): string {
 
   /* ── Hire / contact ── */
   if (q.includes("hire") || q.includes("recruit") || q.includes("why") || q.includes("contact") || q.includes("available")) {
-    return "Piyush is available for AI engineering, generative AI, full-stack, and production backend roles. He brings a rare combination: AI engineering depth (RAG, agentic systems, LLM orchestration), full-stack execution (MERN), open-source discipline (5+ merged PRs), and DevOps familiarity (Docker, K8s, CI/CD). Reach him at piyushrai961@yahoo.com.";
+    return "Piyush is available for AI engineering, generative AI, full-stack, and production backend roles. He brings a rare combination: AI engineering depth (RAG, agentic systems, LLM orchestration), full-stack execution (MERN), open-source discipline (5+ merged PRs), and DevOps familiarity (Docker, K8s, CI/CD). Reach him via the Contact section or at piyushrai961@yahoo.com.";
   }
 
   /* ── Certifications ── */

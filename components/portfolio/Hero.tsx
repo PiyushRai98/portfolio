@@ -2,7 +2,7 @@
 
 import { ArrowDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
 import { profile } from "./data";
 
 const roles = ["Agentic AI", "RAG Systems", "LLM Orchestration", "MERN Microservices"];
@@ -127,40 +127,19 @@ export function Hero() {
             animate="visible"
             className="mt-8 flex flex-wrap items-center gap-3"
           >
-            <Button asChild>
-              <a href="#projects">View Systems</a>
-            </Button>
-            <Button variant="ghost" asChild>
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                <Github className="h-4 w-4" />
-                GitHub
-              </a>
-            </Button>
-            <Button variant="ghost" asChild>
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                <Linkedin className="h-4 w-4" />
-                LinkedIn
-              </a>
-            </Button>
-            <Button variant="ghost" asChild>
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-2"
-              >
-                <Mail className="h-4 w-4" />
-                Email
-              </a>
-            </Button>
+            <ButtonLink href="#projects">View Systems</ButtonLink>
+            <ButtonLink href={profile.github} target="_blank" rel="noreferrer" variant="ghost">
+              <Github className="h-4 w-4" />
+              GitHub
+            </ButtonLink>
+            <ButtonLink href={profile.linkedin} target="_blank" rel="noreferrer" variant="ghost">
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
+            </ButtonLink>
+            <ButtonLink href={profile.mailtoLink} target="_blank" rel="noreferrer" variant="ghost">
+              <Mail className="h-4 w-4" />
+              Email
+            </ButtonLink>
           </motion.div>
         </div>
 

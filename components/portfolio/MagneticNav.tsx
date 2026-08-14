@@ -1,8 +1,8 @@
 "use client";
 
-import { Search, Mail } from "lucide-react";
+import { FileText, Search, Mail } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
 import { profile } from "./data";
 
 const navItems = [
@@ -32,11 +32,11 @@ export function MagneticNav() {
           backdropFilter: "blur(16px)",
         }}
       >
-        {/* Logo / name — mono small caps */}
+        {/* Logo */}
         <a
           href="#home"
           className="font-mono text-sm font-medium tracking-[0.2em] transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)]"
-          style={{ color: "var(--vellum)", letterSpacing: "0.2em" }}
+          style={{ color: "var(--vellum)" }}
         >
           PIYUSH.DEV
         </a>
@@ -50,7 +50,6 @@ export function MagneticNav() {
               className="relative px-3 py-2 font-mono text-sm transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)] group"
               style={{ color: "var(--graphite)" }}
             >
-              {/* Underline draw on hover — phosphor 1px rule */}
               <span
                 className="absolute bottom-1 left-3 right-3 h-px origin-left scale-x-0 transition-transform duration-150 group-hover:scale-x-100"
                 style={{ background: "var(--phosphor)" }}
@@ -74,12 +73,27 @@ export function MagneticNav() {
           >
             <Search className="h-4 w-4" />
           </button>
-          <Button size="sm" asChild className="hidden sm:inline-flex">
-            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2">
-              <Mail className="h-3.5 w-3.5" />
-              Contact
-            </a>
-          </Button>
+          <ButtonLink
+            href={profile.resume}
+            target="_blank"
+            rel="noreferrer"
+            variant="ghost"
+            size="sm"
+            className="hidden sm:inline-flex"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            Résumé
+          </ButtonLink>
+          <ButtonLink
+            href={profile.mailtoLink}
+            target="_blank"
+            rel="noreferrer"
+            size="sm"
+            className="hidden sm:inline-flex"
+          >
+            <Mail className="h-3.5 w-3.5" />
+            Contact
+          </ButtonLink>
         </div>
       </nav>
     </motion.header>

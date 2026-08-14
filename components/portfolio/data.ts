@@ -22,6 +22,8 @@ export const profile = {
   phone: "+91 8081507912",
   github: "https://github.com/PiyushRai98",
   linkedin: "https://www.linkedin.com/in/piyushrai100/",
+  resume: "https://drive.google.com/file/d/11VTPONhXOZQ9djoK83YZTwyVHsJ03kmy/view",
+  mailtoLink: "https://mail.yahoo.com/d/compose?to=piyushrai961%40yahoo.com&subject=Portfolio%20Contact",
 };
 
 export const stats = [

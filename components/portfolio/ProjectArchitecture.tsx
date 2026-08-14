@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { projects } from "./data";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
 
 export function ProjectArchitecture() {
   const [active, setActive] = useState(0);
@@ -308,12 +308,10 @@ export function ProjectArchitecture() {
 
         {/* CTA */}
         <div className="mt-6 flex justify-end">
-          <Button variant="secondary" asChild>
-            <a href="#contact" className="inline-flex items-center gap-2">
-              <ExternalLink className="h-4 w-4" />
-              Build With Me
-            </a>
-          </Button>
+          <ButtonLink href="#contact" variant="secondary">
+            <ExternalLink className="h-4 w-4" />
+            Build With Me
+          </ButtonLink>
         </div>
       </div>
     </section>

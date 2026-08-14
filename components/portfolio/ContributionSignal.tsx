@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, GitPullRequestArrow } from "lucide-react";
 import { profile } from "./data";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
 import { ContributionGrid } from "./ContributionGrid";
 import { RecentRepos } from "./RecentRepos";
 
@@ -38,18 +38,14 @@ export function ContributionSignal() {
               scalable MERN apps, GitHub Actions CI/CD, LangChain, and Agile collaboration.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Button variant="secondary" asChild>
-                <a href={profile.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2">
-                  <Github className="h-4 w-4" />
-                  GitHub Profile
-                </a>
-              </Button>
-              <Button variant="ghost" asChild>
-                <a href="#experience" className="inline-flex items-center gap-2">
-                  <GitPullRequestArrow className="h-4 w-4" />
-                  Timeline
-                </a>
-              </Button>
+              <ButtonLink href={profile.github} target="_blank" rel="noreferrer" variant="secondary">
+                <Github className="h-4 w-4" />
+                GitHub Profile
+              </ButtonLink>
+              <ButtonLink href="#experience" variant="ghost">
+                <GitPullRequestArrow className="h-4 w-4" />
+                Timeline
+              </ButtonLink>
             </div>
           </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { FileText, Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { ButtonLink } from "@/components/ui/button";
 import { profile } from "./data";
 
 export function ContactDock() {
@@ -58,9 +58,11 @@ export function ContactDock() {
 
           {/* Contact details + CTAs */}
           <div className="grid gap-2">
-            {/* Email — phosphor on hover (interactive) */}
+            {/* Email row */}
             <a
-              href={`mailto:${profile.email}`}
+              href={profile.mailtoLink}
+              target="_blank"
+              rel="noreferrer"
               className="flex items-center gap-3 px-4 py-3 font-mono text-xs transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--phosphor)]"
               style={{
                 border: "1px solid var(--line)",
@@ -115,24 +117,37 @@ export function ContactDock() {
 
             {/* CTAs */}
             <div className="mt-2 flex flex-wrap gap-2">
-              <Button asChild>
-                <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2">
-                  <Send className="h-4 w-4" />
-                  Start Conversation
-                </a>
-              </Button>
-              <Button variant="ghost" asChild>
-                <a href={profile.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2">
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
-              <Button variant="ghost" asChild>
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2">
-                  <Linkedin className="h-4 w-4" />
-                  LinkedIn
-                </a>
-              </Button>
+              <ButtonLink href={profile.mailtoLink} target="_blank" rel="noreferrer">
+                <Send className="h-4 w-4" />
+                Start Conversation
+              </ButtonLink>
+              <ButtonLink
+                href={profile.resume}
+                target="_blank"
+                rel="noreferrer"
+                variant="secondary"
+              >
+                <FileText className="h-4 w-4" />
+                View Résumé
+              </ButtonLink>
+              <ButtonLink
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                variant="ghost"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </ButtonLink>
+              <ButtonLink
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                variant="ghost"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </ButtonLink>
             </div>
           </div>
         </div>
