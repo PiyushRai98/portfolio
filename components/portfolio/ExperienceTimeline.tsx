@@ -132,7 +132,7 @@ export function ExperienceTimeline() {
                       {item.role}
                     </p>
                   </div>
-                  {/* Active/Expected badge */}
+                  {/* Active/Expected/Completed badge */}
                   <span
                     className="shrink-0 font-mono text-[9px] uppercase tracking-[0.14em]"
                     style={{
@@ -144,7 +144,11 @@ export function ExperienceTimeline() {
                       height: "fit-content",
                     }}
                   >
-                    {item.date.includes("Present") ? "Active" : "Expected"}
+                    {item.date.includes("Present")
+                      ? "Active"
+                      : item.date.includes("Expected")
+                      ? "Expected"
+                      : "Completed"}
                   </span>
                 </div>
 

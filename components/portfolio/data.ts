@@ -16,21 +16,34 @@ import {
 
 export const profile = {
   name: "Piyush Kumar Rai",
-  headline: "AI/ML Engineer • Generative AI Engineer • Full-Stack Software Engineer",
+  headline:
+    "AI/ML Engineer • Generative AI Engineer • Full-Stack Software Engineer",
   location: "Noida, Uttar Pradesh, India",
   email: "piyushrai961@yahoo.com",
   phone: "+91 8081507912",
   github: "https://github.com/PiyushRai98",
   linkedin: "https://www.linkedin.com/in/piyushrai100/",
-  resume: "https://drive.google.com/file/d/11VTPONhXOZQ9djoK83YZTwyVHsJ03kmy/view",
-  mailtoLink: "https://mail.yahoo.com/d/compose?to=piyushrai961%40yahoo.com&subject=Portfolio%20Contact",
+  resume:
+    "https://drive.google.com/file/d/11VTPONhXOZQ9djoK83YZTwyVHsJ03kmy/view",
+  mailtoLink:
+    "https://mail.yahoo.com/d/compose?to=piyushrai961%40yahoo.com&subject=Portfolio%20Contact",
 };
 
 export const stats = [
   { value: 5, suffix: "+", label: "merged open-source PRs", href: "#signal" },
   { value: 3, suffix: "+", label: "AI workflow systems", href: "#projects" },
-  { value: 104, suffix: "", label: "ranking features engineered", href: "#projects" },
-  { value: 40, suffix: "%", label: "CI/CD overhead reduced", href: "#experience" },
+  {
+    value: 104,
+    suffix: "",
+    label: "ranking features engineered",
+    href: "#projects",
+  },
+  {
+    value: 40,
+    suffix: "%",
+    label: "CI/CD overhead reduced",
+    href: "#experience",
+  },
 ];
 
 export const projects = [
@@ -52,9 +65,23 @@ export const projects = [
       "Citation-backed Responses",
       "Markdown/PDF Export",
     ],
-    nodes: ["PDF Ingestion", "Chunker", "BGE Embedder", "FAISS Index", "Granite LLM", "Response API"],
+    nodes: [
+      "PDF Ingestion",
+      "Chunker",
+      "BGE Embedder",
+      "FAISS Index",
+      "Granite LLM",
+      "Response API",
+    ],
     github: "https://github.com/PiyushRai98/ai-research-assistant",
-    stack: ["Python", "IBM Granite", "RAG", "BGE-small-en-v1.5", "FAISS", "Streamlit"],
+    stack: [
+      "Python",
+      "IBM Granite",
+      "RAG",
+      "BGE-small-en-v1.5",
+      "FAISS",
+      "Streamlit",
+    ],
     bullets: [
       "Built a RAG platform that transforms research PDFs into an interactive AI assistant with citation-grounded question answering using IBM Granite LLM and BGE-small embeddings.",
       "Implemented semantic retrieval, document chunking, vector indexing, and citation-backed responses with summaries, flashcards, quizzes, and document comparison.",
@@ -79,9 +106,24 @@ export const projects = [
       "Career Evidence Extraction",
       "Behavioral Intelligence",
     ],
-    nodes: ["Query Parser", "BM25 Retriever", "Dense Retriever", "RRF Ranker", "LightGBM", "Dashboard"],
+    nodes: [
+      "Query Parser",
+      "BM25 Retriever",
+      "Dense Retriever",
+      "RRF Ranker",
+      "LightGBM",
+      "Dashboard",
+    ],
     github: "https://github.com/PiyushRai98/Ultimate-AI-Recruiter",
-    stack: ["Python", "LightGBM", "FAISS", "BM25", "Sentence Transformers", "Streamlit", "Plotly"],
+    stack: [
+      "Python",
+      "LightGBM",
+      "FAISS",
+      "BM25",
+      "Sentence Transformers",
+      "Streamlit",
+      "Plotly",
+    ],
     bullets: [
       "Built an AI-powered candidate ranking platform that shortlisted top 100 candidates from 100K+ profiles using Hybrid Retrieval (BM25 + Dense + RRF) and LightGBM LambdaMART.",
       "Engineered 104 ranking features with multi-query semantic retrieval, career evidence extraction, behavioral intelligence, and explainable AI.",
@@ -106,9 +148,24 @@ export const projects = [
       "Kubernetes",
       "GitHub Actions",
     ],
-    nodes: ["React Client", "Socket Hub", "CRDT Sync", "Monaco", "Redis Pub/Sub", "Session Store"],
+    nodes: [
+      "React Client",
+      "Socket Hub",
+      "CRDT Sync",
+      "Monaco",
+      "Redis Pub/Sub",
+      "Session Store",
+    ],
     github: "https://github.com/PiyushRai98/CollabCode",
-    stack: ["React", "TypeScript", "Node.js", "Socket.IO", "MongoDB", "Redis", "Docker"],
+    stack: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Socket.IO",
+      "MongoDB",
+      "Redis",
+      "Docker",
+    ],
     bullets: [
       "Built a production-ready real-time collaborative code editor with Monaco Editor and Yjs CRDTs, enabling conflict-free multi-user editing, live cursor presence, and room-based collaboration.",
       "Engineered a scalable backend using Node.js, Express, Socket.io, Redis Pub/Sub, and MongoDB, supporting distributed synchronization, version history, JWT authentication, and auto-save functionality.",
@@ -119,24 +176,28 @@ export const projects = [
 
 export const experienceTimeline = [
   {
-    date: "June 2026 - Present",
-    title: "IBM SkillsBuild Academic Internship",
-    titleHref: "https://drive.google.com/file/d/14DrbNf4zZ9Dw0tM09vTXDExDPMCNSiup/view?usp=sharing",
+    date: "June 2026 – July 2026",
+    title: "IBM SkillsBuild AI Automation & Intelligent Solutions Internship",
+    titleHref:
+      "https://drive.google.com/file/d/1JqaE1dj0ALNmjFdQ24nFpRnIYPrTBz7p/view?usp=sharing",
     role: "AI Automation & Intelligent Solutions Intern",
-    org: "AICTE × IBM",
-    signal: "Agentic workflows, AI models, APIs, automation pipelines",
+    org: "BharatCares × AICTE × IBM",
+    signal:
+      "Agentic workflows, AI models, APIs, automation pipelines · Certificate ID: BHIBMAC06284",
     bullets: [
-      "Building AI-powered automation workflows and intelligent solutions using Agentic AI, workflow orchestration, and modern AI development practices.",
-      "Developing an end-to-end AI project integrating AI models, APIs, and automation pipelines under expert mentorship.",
+      "Completed the BharatCares 6-week IBM SkillsBuild AI Automation & Intelligent Solutions Internship, conducted in association with AICTE and IBM SkillsBuild (22 June – 31 July 2026).",
+      "Built AI-powered automation workflows and intelligent solutions using Agentic AI, workflow orchestration, and modern AI development practices under expert mentorship.",
     ],
   },
   {
     date: "May 2026 - Present",
     title: "GirlScript Summer of Code 2026",
-    titleHref: "https://gssoc.girlscript.org/profile/90ff1fb9-446d-4334-a112-a0536dbd61e4",
+    titleHref:
+      "https://gssoc.girlscript.org/profile/90ff1fb9-446d-4334-a112-a0536dbd61e4",
     role: "Open Source Contributor — AI & Agents Track",
     org: "GSSoC",
-    signal: "AI features, REST APIs, MERN systems, GitHub Actions, LangChain, merged PRs",
+    signal:
+      "AI features, REST APIs, MERN systems, GitHub Actions, LangChain, merged PRs",
     bullets: [
       "Delivered 5+ merged pull requests shipping AI-powered features, agentic workflows, and RAG pipeline integrations across open-source repositories.",
       "Automated CI/CD via GitHub Actions, reducing manual developer overhead by ~40%; applied prompt engineering and LLM orchestration across 3+ projects.",
@@ -148,7 +209,8 @@ export const experienceTimeline = [
     titleHref: null,
     role: "B.Tech - Electronics & Communication Engineering",
     org: "JSSATEN",
-    signal: "Engineering foundations, systems thinking, signal processing mindset",
+    signal:
+      "Engineering foundations, systems thinking, signal processing mindset",
     bullets: [],
   },
 ];

@@ -2,7 +2,7 @@
 
 > An interactive, cinematic portfolio built as an **AI operating system** — live GitHub contribution graph, real repo data, animated skills constellation, and a terminal interface, all on a dark cyberpunk aesthetic.
 
-**Live:** [portfolio2-nu-ecru.vercel.app](https://portfolio2-nu-ecru.vercel.app) &nbsp;·&nbsp; **Resume:** [View PDF](https://drive.google.com/file/d/14DrbNf4zZ9Dw0tM09vTXDExDPMCNSiup/view?usp=sharing)
+**Live:** [portfolio2-nu-ecru.vercel.app](https://portfolio2-nu-ecru.vercel.app) &nbsp;·&nbsp; **Resume:** [View PDF](https://drive.google.com/file/d/1JqaE1dj0ALNmjFdQ24nFpRnIYPrTBz7p/view?usp=sharing)
 
 ---
 

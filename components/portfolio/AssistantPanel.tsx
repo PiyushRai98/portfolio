@@ -45,8 +45,8 @@ function answerFor(prompt: string): string {
   }
 
   /* ── Experience ── */
-  if (q.includes("ibm") || q.includes("skillsbuild") || q.includes("intern") || q.includes("internship")) {
-    return "Piyush is an IBM SkillsBuild Academic Intern (June 2026 – present) under AICTE × IBM, building AI-powered automation workflows and intelligent solutions using Agentic AI, workflow orchestration, and modern AI development practices.";
+  if (q.includes("ibm") || q.includes("skillsbuild") || q.includes("intern") || q.includes("internship") || q.includes("bharatcares")) {
+    return "Piyush completed the BharatCares 6-week IBM SkillsBuild AI Automation & Intelligent Solutions Internship (22 June – 31 July 2026), conducted in association with AICTE and IBM SkillsBuild. Certificate ID: BHIBMAC06284. He built AI-powered automation workflows and intelligent solutions using Agentic AI and workflow orchestration.";
   }
   if (q.includes("gssoc") || q.includes("girlscript") || q.includes("open source") || q.includes("opensource") || q.includes("pr") || q.includes("contribution")) {
     return "He is a GirlScript Summer of Code 2026 contributor (AI & Agents track) — 5+ merged PRs shipping AI features, RAG integrations, and agentic workflows. He automated CI/CD via GitHub Actions, cutting developer overhead by ~40%, and applied prompt engineering across 3+ open-source projects.";
@@ -55,7 +55,7 @@ function answerFor(prompt: string): string {
     return "B.Tech in Electronics & Communication Engineering at JSS Academy of Technical Education, Noida (expected July 2027). The ECE foundation underpins his systems-thinking approach to AI and software architecture.";
   }
   if (q.includes("experience") || q.includes("work") || q.includes("background") || q.includes("resume")) {
-    return "Piyush has two active roles: IBM SkillsBuild AI Automation Intern (AICTE × IBM, June 2026) and GirlScript Summer of Code 2026 open-source contributor (AI & Agents track). Currently pursuing B.Tech ECE at JSSATEN, Noida (expected 2027).";
+    return "Piyush has completed the BharatCares IBM SkillsBuild AI Automation Internship (AICTE × IBM, June–July 2026, Certificate ID: BHIBMAC06284) and is an active GirlScript Summer of Code 2026 open-source contributor (AI & Agents track). Currently pursuing B.Tech ECE at JSSATEN, Noida (expected 2027).";
   }
 
   /* ── Hire / contact ── */
